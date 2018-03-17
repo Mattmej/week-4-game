@@ -1,0 +1,27 @@
+/* body, html {
+    font-family: 'Play', sans-serif; 
+} */
+
+/* body {
+    font-family: 'Play', sans-serif;
+} */
+
+.sw-text {
+    font-family: 'Play', sans-serif;
+}
+
+body {
+    height: 100%;
+}
+
+.space {
+    margin-bottom: 20px;
+}
+
+.container {
+    height: 100%;
+}
+
+.black-border {
+    border: 1px solid black;
+}
