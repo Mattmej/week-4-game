@@ -2,8 +2,8 @@
 
 Game Plan:
 
-1. Characters are displayed on the screen.
-2. A prompt will appear on screen to choose a character.
+1. Characters are displayed on the screen.                                                          (o)
+2. A prompt will appear on screen to choose a character.                                            (o)
 3. User will click on a character to play.
 4. When clicked, the character will move to the battle area.
 5. User will click on another character to fight.
@@ -85,6 +85,35 @@ $("#char1-hp").html(lukeSkywalker.hp);
 $("#char2-hp").html(darthVader.hp);
 $("#char3-hp").html(bobaFett.hp);
 $("#char4-hp").html(jarBinks.hp);
+
+//////////////////////////////////////////////////////////////
+
+// Functions
+
+// function turnGreen() {
+
+// }
+
+// $("#char1").click(turnGreen);
+
+
+// Character frame turns green when selected.
+$(".charHolder").on("click", function() {
+    $(this).toggleClass("player-select");
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

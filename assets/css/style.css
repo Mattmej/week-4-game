@@ -54,7 +54,7 @@ body {
 
 }
 
-#char1, #char2, #char3, #char4 {
+#char1, #char2, #char3, #char4, .charHolder {
     /* position: relative; */
     width: 200px;
     height: 200px;
@@ -75,4 +75,12 @@ body {
 .message {
     margin-bottom: 30px;
     text-align: center;
+}
+
+.player-select {
+    background-color: rgb(12, 209, 12)
+}
+
+.enemy-select {
+    background-color: red;
 }
