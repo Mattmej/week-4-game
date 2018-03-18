@@ -31,6 +31,7 @@ Game Plan:
 */
 
 var lukeSkywalker = {
+    name: "Luke Skywalker",
     hp: 100,
     attack: 5,
     counterAttack: 5,
@@ -38,6 +39,7 @@ var lukeSkywalker = {
 }
 
 var darthVader = {
+    name: "Darth Vader",
     hp: 120,
     attack: 8,
     counterAttack: 8,
@@ -45,6 +47,7 @@ var darthVader = {
 }
 
 var bobaFett = {
+    name: "Boba Fett",
     hp: 110,
     attack: 7,
     counterAttack: 7,
@@ -52,6 +55,7 @@ var bobaFett = {
 }
 
 var jarBinks = {
+    name: "Jar Jar Binks",
     hp: 300,
     attack: 2,
     counterAttack: 2,
@@ -59,11 +63,17 @@ var jarBinks = {
 }
 
 
+$("#char1-name").html(lukeSkywalker.name);
+$("#char2-name").html(darthVader.name);
+$("#char3-name").html(bobaFett.name);
+$("#char4-name").html(jarBinks.name);
 
-$(".charSlot1").attr("src", lukeSkywalker.picture);
-$(".charSlot2").attr("src", darthVader.picture);
-$(".charSlot3").attr("src", bobaFett.picture);
-$(".charSlot4").attr("src", jarBinks.picture);
+
+
+$("#charSlot1").attr("src", lukeSkywalker.picture);
+$("#charSlot2").attr("src", darthVader.picture);
+$("#charSlot3").attr("src", bobaFett.picture);
+$("#charSlot4").attr("src", jarBinks.picture);
 
 // $("char4").html("<img>");
 

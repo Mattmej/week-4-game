@@ -37,7 +37,7 @@ body {
     /* height: 200px; */
 /* } */
 
-.charSlot1, .charSlot2, .charSlot3, .charSlot4 {
+#charSlot1, #charSlot2, #charSlot3, #charSlot4 {
     /* width: 200px; */
     /* height: 200px; */
     /* position: absolute; */
@@ -45,7 +45,7 @@ body {
     height: 150px;
     display: block;
     margin: auto;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     /* vertical-align: middle; */
     /* margin-top: auto; */
     /* margin: 0 auto; */
@@ -60,4 +60,13 @@ body {
     height: 200px;
     /* line-height: 200px;
     padding: auto; */
+}
+
+#char1-hp, #char2-hp, #char3-hp, #char4-hp {
+    vertical-align: text-bottom;
+}
+
+#char1-name, #char2-name, #char3-name, #char4-name {
+    vertical-align: text-top;
+    text-align: center;
 }
