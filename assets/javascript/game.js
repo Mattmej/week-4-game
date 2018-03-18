@@ -62,6 +62,8 @@ var jarBinks = {
     picture: "assets/images/jarjar-binks.jpg"
 }
 
+var charArray = [lukeSkywalker, darthVader, bobaFett, jarBinks];
+
 var playerIsClicked = false;
 var enemyIsClicked = false;
 
