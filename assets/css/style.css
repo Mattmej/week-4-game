@@ -25,3 +25,39 @@ body {
 .black-border {
     border: 1px solid black;
 }
+
+.blue-border {
+    border: 1px solid blue;
+}
+
+/* #char1, #char2, #char3, #char4 { */
+    /* width: 40%; */
+    /* width: 200px; */
+    /* height: 40%; */
+    /* height: 200px; */
+/* } */
+
+.charSlot1, .charSlot2, .charSlot3, .charSlot4 {
+    /* width: 200px; */
+    /* height: 200px; */
+    /* position: absolute; */
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+    /* vertical-align: middle; */
+    /* margin-top: auto; */
+    /* margin: 0 auto; */
+    /* margin-left: auto;
+    margin-right: auto; */
+
+}
+
+#char1, #char2, #char3, #char4 {
+    /* position: relative; */
+    width: 200px;
+    height: 200px;
+    /* line-height: 200px;
+    padding: auto; */
+}
