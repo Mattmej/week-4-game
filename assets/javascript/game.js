@@ -101,27 +101,26 @@ $("#char4-hp").html(jarBinks.hp);
 
 
 function selectCharacters() {
-    $(".charHolder").on("click", function() {
+    $(".charHolder").on("click", function() {                               // everything inside this executes when this element is clicked
 
         if (!playerIsClicked) {
-            var selectedChar = $(".charHolder").attr("id", "myChar");
-            $(".charHolder").attr("id", "myChar");
+            var selectedChar = $(".charHolder").attr("id", "myChar");       
+            $(".charHolder").attr("id", "myChar");                          // adds the "myChar" id to whoever is selected
             $(".message").html("<h2>Choose your opponent!</h2>");           // displays this message
             // $(this).addClass("player-select");
-            $(this).toggleClass("player-select");
-            // $(this).removeClass("charHolder");                              // can we do this?
-            $(this).removeClass("enemyHolder");
+            $(this).toggleClass("player-select");                           // turns the selected enemy green
+            $(this).removeClass("enemyHolder");                             // prevents a user from selecting themselves as an enemy
             playerIsClicked = true;
 
-            if (playerIsClicked && !enemyIsClicked) {
+            if (playerIsClicked && !enemyIsClicked) {                       // if a player is selected but no enemy is selected, then...
                 
                 $(".enemyHolder").on("click", function() {
 
-                $(".charHolder").attr("id", "enemyChar");
-                $(".message").html("<h2>Get ready to fight!</h2>");     // displays this message
-                $(this).toggleClass("enemy-select");
-                $(".charHolder").off("click");                          // turns off click function
-                enemyIsClicked = true;
+                    $(".charHolder").attr("id", "enemyChar");               // adds the "enemyChar" id to whoever is selected
+                    $(".message").html("<h2>Get ready to fight!</h2>");     // displays this message
+                    $(this).toggleClass("enemy-select");                    // turns the selected enemy red
+                    $(".charHolder").off("click");                          // turns off click function
+                    enemyIsClicked = true;
 
                 })
             }
