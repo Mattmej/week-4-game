@@ -4,9 +4,11 @@ Game Plan:
 
 1. Characters are displayed on the screen.                                                          (o)
 2. A prompt will appear on screen to choose a character.                                            (o)
-3. User will click on a character to play.
+3. User will click on a character to play.                                                          (o)
 4. When clicked, the character will move to the battle area.
-5. User will click on another character to fight.
+    a. Move player character to another div
+    b. Move enemy character to another div
+5. User will click on another character to fight.                                                   (o)
 6. [same as 4, but for the second character]
 7. Button to attack enemy will either appear or already be in the battle area.
 8. When user presses attack button, messages will appear.
@@ -129,141 +131,15 @@ function selectCharacters() {
 
         }
 
-        // else if (playerIsClicked && !enemyIsClicked) {
-        //     $(".charHolder").attr("id", "enemyChar");
-        //     $(".message").html("<h2>Get ready to fight!</h2>");     // displays this message
-        //     $(".charHolder").off("click");                          // turns off click function
-        // }
-
 
 
     })
+}
 
+function moveCharacters() {
 
 }
 
 selectCharacters();
-// selectCharacters();
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-
-// function selectCharacters() {
-//     while ()
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Character frame turns green when selected.
-// $(".charHolder").on("click", function() {
-//     $(this).toggleClass("player-select");
-//     // playerIsClicked = true;
-//     // console.log(playerIsClicked);
-
-//     if ($(".charHolder").hasClass("player-select")) {                   // if the character frame was selected and turns green,
-//         $(".message").html("<h2>Choose your opponent!</h2>");           // displays this message
-//         $(".charHolder").attr("id", "myChar");
-//         $(".charHolder").off("click");                                  // turns off click function
-
-//         // if ($("#char1").hasClass("player.select")) {
-//         //     $(this).off("click");
-//         // }
-
-//         // else if ($("#char2").hasClass("player.select")) {
-//         //     $(this).off("click");
-//         // }
-
-//         // else if ($("#char3").hasClass("player.select")) {
-//         //     $(this).off("click");
-//         // }
-
-//         // else if ($("#char4").hasClass("player.select")) {
-//         //     $(this).off("click");
-//         // }
-
-
-
-//         $(".charHolder").on("click", function() {                       // Now character frame turns red when selected.
-
-//             // if (!$(charHolder))
-
-
-
-
-
-//             $(this).toggleClass("enemy-select");
-//             // console.log($("charHolder").hasClass("enemy-select"));
-//             console.log($("charHolder").has(".enemy-select"));
-
-           
-
-//             if (!$("charHolder").hasClass("enemy-select")) {             // if the character frame was selected and turns red,
-//                                                                          // (a false statement. hasClass method does not work for child nodes.)
-//                 $(".message").html("<h2>Get ready to fight!</h2>");     // displays this message
-//                 $(".charHolder").off("click");                          // turns off click function
-//             }
-//         })
-//         // return false;
-//         // $(".charHolder")
-//         // $(".message").text("<h2>Choose your opponent!</h2>");
-//     }
-
-//     // return false;
-
-// })
-
-// // if (playerIsClicked === true) {
-// //     // $(".message").html("<h2>Choose your opponent!</h2>");
-// //     $("<h2>Choose Your Opponent!</h2>").appendTo(".message");
-// // }
-
-
-
-
-// // $("char4").html("<img>");
-
-
-// // var $char4 = $("<img>", {"class": "charSlot4"});   // creates a new image element with a class of "charSlot4"
-// // $("#char4").html($char4);                          // puts the image element into the element with the id of "char4"
-// // $(".charSlot4").attr("src", jarBinks.picture);
 
 

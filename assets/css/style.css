@@ -64,6 +64,7 @@ body {
 
 #char1-hp, #char2-hp, #char3-hp, #char4-hp {
     vertical-align: text-bottom;
+    text-align: center;
 }
 
 #char1-name, #char2-name, #char3-name, #char4-name {
