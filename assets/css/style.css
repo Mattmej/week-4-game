@@ -54,7 +54,7 @@ body {
 
 }
 
-#char1, #char2, #char3, #char4, .charHolder {
+#char1, #char2, #char3, #char4, .charHolder, .enemyHolder {
     /* position: relative; */
     width: 200px;
     height: 200px;

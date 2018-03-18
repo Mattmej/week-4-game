@@ -63,6 +63,7 @@ var jarBinks = {
 }
 
 var playerIsClicked = false;
+var enemyIsClicked = false;
 
 // Adds the characters' names to the characters' portraits (will I need this?)
 // $("#char1-name").html(lukeSkywalker.name);
@@ -99,81 +100,54 @@ $("#char4-hp").html(jarBinks.hp);
 // $("#char1").click(turnGreen);
 
 
-// Character frame turns green when selected.
-$(".charHolder").on("click", function() {
-    $(this).toggleClass("player-select");
-    // playerIsClicked = true;
-    // console.log(playerIsClicked);
+function selectCharacters() {
+    $(".charHolder").on("click", function() {
 
-    if ($(".charHolder").hasClass("player-select")) {                   // if the character frame was selected and turns green,
-        $(".message").html("<h2>Choose your opponent!</h2>");           // displays this message
-        $(".charHolder").off("click");                                  // turns off click function
+        if (!playerIsClicked) {
+            var selectedChar = $(".charHolder").attr("id", "myChar");
+            $(".charHolder").attr("id", "myChar");
+            $(".message").html("<h2>Choose your opponent!</h2>");           // displays this message
+            // $(this).addClass("player-select");
+            $(this).toggleClass("player-select");
+            // $(this).removeClass("charHolder");                              // can we do this?
+            $(this).removeClass("enemyHolder");
+            playerIsClicked = true;
 
-        if ($("#char1").hasClass("player.select")) {
-            $(this).off("click");
-        }
+            if (playerIsClicked && !enemyIsClicked) {
+                
+                $(".enemyHolder").on("click", function() {
 
-        else if ($("#char2").hasClass("player.select")) {
-            $(this).off("click");
-        }
-
-        else if ($("#char3").hasClass("player.select")) {
-            $(this).off("click");
-        }
-
-        else if ($("#char4").hasClass("player.select")) {
-            $(this).off("click");
-        }
-
-
-
-
-
-
-
-
-        $(".charHolder").on("click", function() {                       // Now character frame turns red when selected.
-
-            // if (!$(charHolder))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            $(this).toggleClass("enemy-select");
-            // console.log($("charHolder").hasClass("enemy-select"));
-            console.log($("charHolder").has(".enemy-select"));
-
-           
-
-            if (!$("charHolder").hasClass("enemy-select")) {             // if the character frame was selected and turns red,
-                                                                         // (a false statement. hasClass method does not work for child nodes.)
+                $(".charHolder").attr("id", "enemyChar");
                 $(".message").html("<h2>Get ready to fight!</h2>");     // displays this message
+                $(this).toggleClass("enemy-select");
                 $(".charHolder").off("click");                          // turns off click function
+                enemyIsClicked = true;
+
+                })
             }
-        })
-        // return false;
-        // $(".charHolder")
-        // $(".message").text("<h2>Choose your opponent!</h2>");
-    }
 
-    // return false;
+        }
 
-})
+        // else if (playerIsClicked && !enemyIsClicked) {
+        //     $(".charHolder").attr("id", "enemyChar");
+        //     $(".message").html("<h2>Get ready to fight!</h2>");     // displays this message
+        //     $(".charHolder").off("click");                          // turns off click function
+        // }
 
-// if (playerIsClicked === true) {
-//     // $(".message").html("<h2>Choose your opponent!</h2>");
-//     $("<h2>Choose Your Opponent!</h2>").appendTo(".message");
+
+
+    })
+
+
+}
+
+selectCharacters();
+// selectCharacters();
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+// function selectCharacters() {
+//     while ()
 // }
 
 
@@ -192,11 +166,103 @@ $(".charHolder").on("click", function() {
 
 
 
-// $("char4").html("<img>");
 
 
-// var $char4 = $("<img>", {"class": "charSlot4"});   // creates a new image element with a class of "charSlot4"
-// $("#char4").html($char4);                          // puts the image element into the element with the id of "char4"
-// $(".charSlot4").attr("src", jarBinks.picture);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Character frame turns green when selected.
+// $(".charHolder").on("click", function() {
+//     $(this).toggleClass("player-select");
+//     // playerIsClicked = true;
+//     // console.log(playerIsClicked);
+
+//     if ($(".charHolder").hasClass("player-select")) {                   // if the character frame was selected and turns green,
+//         $(".message").html("<h2>Choose your opponent!</h2>");           // displays this message
+//         $(".charHolder").attr("id", "myChar");
+//         $(".charHolder").off("click");                                  // turns off click function
+
+//         // if ($("#char1").hasClass("player.select")) {
+//         //     $(this).off("click");
+//         // }
+
+//         // else if ($("#char2").hasClass("player.select")) {
+//         //     $(this).off("click");
+//         // }
+
+//         // else if ($("#char3").hasClass("player.select")) {
+//         //     $(this).off("click");
+//         // }
+
+//         // else if ($("#char4").hasClass("player.select")) {
+//         //     $(this).off("click");
+//         // }
+
+
+
+//         $(".charHolder").on("click", function() {                       // Now character frame turns red when selected.
+
+//             // if (!$(charHolder))
+
+
+
+
+
+//             $(this).toggleClass("enemy-select");
+//             // console.log($("charHolder").hasClass("enemy-select"));
+//             console.log($("charHolder").has(".enemy-select"));
+
+           
+
+//             if (!$("charHolder").hasClass("enemy-select")) {             // if the character frame was selected and turns red,
+//                                                                          // (a false statement. hasClass method does not work for child nodes.)
+//                 $(".message").html("<h2>Get ready to fight!</h2>");     // displays this message
+//                 $(".charHolder").off("click");                          // turns off click function
+//             }
+//         })
+//         // return false;
+//         // $(".charHolder")
+//         // $(".message").text("<h2>Choose your opponent!</h2>");
+//     }
+
+//     // return false;
+
+// })
+
+// // if (playerIsClicked === true) {
+// //     // $(".message").html("<h2>Choose your opponent!</h2>");
+// //     $("<h2>Choose Your Opponent!</h2>").appendTo(".message");
+// // }
+
+
+
+
+// // $("char4").html("<img>");
+
+
+// // var $char4 = $("<img>", {"class": "charSlot4"});   // creates a new image element with a class of "charSlot4"
+// // $("#char4").html($char4);                          // puts the image element into the element with the id of "char4"
+// // $(".charSlot4").attr("src", jarBinks.picture);
 
 
