@@ -105,19 +105,69 @@ $(".charHolder").on("click", function() {
     // playerIsClicked = true;
     // console.log(playerIsClicked);
 
-    if ($(".charHolder").hasClass("player-select")) {
-        $(".message").html("<h2>Choose your opponent!</h2>");
+    if ($(".charHolder").hasClass("player-select")) {                   // if the character frame was selected and turns green,
+        $(".message").html("<h2>Choose your opponent!</h2>");           // displays this message
+        $(".charHolder").off("click");                                  // turns off click function
+
+        if ($("#char1").hasClass("player.select")) {
+            $(this).off("click");
+        }
+
+        else if ($("#char2").hasClass("player.select")) {
+            $(this).off("click");
+        }
+
+        else if ($("#char3").hasClass("player.select")) {
+            $(this).off("click");
+        }
+
+        else if ($("#char4").hasClass("player.select")) {
+            $(this).off("click");
+        }
+
+
+
+
+
+
+
+
+        $(".charHolder").on("click", function() {                       // Now character frame turns red when selected.
+
+            // if (!$(charHolder))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            $(this).toggleClass("enemy-select");
+            // console.log($("charHolder").hasClass("enemy-select"));
+            console.log($("charHolder").has(".enemy-select"));
+
+           
+
+            if (!$("charHolder").hasClass("enemy-select")) {             // if the character frame was selected and turns red,
+                                                                         // (a false statement. hasClass method does not work for child nodes.)
+                $(".message").html("<h2>Get ready to fight!</h2>");     // displays this message
+                $(".charHolder").off("click");                          // turns off click function
+            }
+        })
+        // return false;
+        // $(".charHolder")
         // $(".message").text("<h2>Choose your opponent!</h2>");
     }
 
-
-
-
-
-
-
-
-
+    // return false;
 
 })
 
