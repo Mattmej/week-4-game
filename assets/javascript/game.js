@@ -62,6 +62,8 @@ var jarBinks = {
     picture: "assets/images/jarjar-binks.jpg"
 }
 
+var playerIsClicked = false;
+
 // Adds the characters' names to the characters' portraits (will I need this?)
 // $("#char1-name").html(lukeSkywalker.name);
 // $("#char2-name").html(darthVader.name);
@@ -100,7 +102,30 @@ $("#char4-hp").html(jarBinks.hp);
 // Character frame turns green when selected.
 $(".charHolder").on("click", function() {
     $(this).toggleClass("player-select");
+    // playerIsClicked = true;
+    // console.log(playerIsClicked);
+
+    if ($(".charHolder").hasClass("player-select")) {
+        $(".message").html("<h2>Choose your opponent!</h2>");
+        // $(".message").text("<h2>Choose your opponent!</h2>");
+    }
+
+
+
+
+
+
+
+
+
+
 })
+
+// if (playerIsClicked === true) {
+//     // $(".message").html("<h2>Choose your opponent!</h2>");
+//     $("<h2>Choose Your Opponent!</h2>").appendTo(".message");
+// }
+
 
 
 

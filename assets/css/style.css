@@ -75,6 +75,7 @@ body {
 .message {
     margin-bottom: 30px;
     text-align: center;
+    font-family: 'Play', sans-serif;
 }
 
 .player-select {
