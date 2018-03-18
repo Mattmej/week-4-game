@@ -62,18 +62,31 @@ var jarBinks = {
     picture: "assets/images/jarjar-binks.jpg"
 }
 
+// Adds the characters' names to the characters' portraits (will I need this?)
+// $("#char1-name").html(lukeSkywalker.name);
+// $("#char2-name").html(darthVader.name);
+// $("#char3-name").html(bobaFett.name);
+// $("#char4-name").html(jarBinks.name);
 
-$("#char1-name").html(lukeSkywalker.name);
-$("#char2-name").html(darthVader.name);
-$("#char3-name").html(bobaFett.name);
-$("#char4-name").html(jarBinks.name);
+
+// Asks the user to choose a character
+$(".message").html("<h2>Choose your character!</h2>");
 
 
 
+// Adds the characters' picture to the div
 $("#charSlot1").attr("src", lukeSkywalker.picture);
 $("#charSlot2").attr("src", darthVader.picture);
 $("#charSlot3").attr("src", bobaFett.picture);
 $("#charSlot4").attr("src", jarBinks.picture);
+
+// Adds the characters' current HP to the portrait
+$("#char1-hp").html(lukeSkywalker.hp);
+$("#char2-hp").html(darthVader.hp);
+$("#char3-hp").html(bobaFett.hp);
+$("#char4-hp").html(jarBinks.hp);
+
+
 
 // $("char4").html("<img>");
 
