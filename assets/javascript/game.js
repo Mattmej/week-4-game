@@ -2,7 +2,10 @@
 
 Game Plan:
 
-1. Characters are displayed on the screen.                                                          (o)
+1. Characters are displayed on the screen.                                                          ()
+    a. Display portrait                                                                             (o)
+    b. Display hp                                                                                   (o)
+    c. Display attack power                                                                     (in progress)
 2. A prompt will appear on screen to choose a character.                                            (o)
 3. User will click on a character to play.                                                          (o)
 4. When clicked, the character will move to the battle area.
