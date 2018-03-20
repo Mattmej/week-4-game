@@ -18,6 +18,10 @@ body {
     margin-bottom: 20px;
 }
 
+.bigSpace {
+    margin-bottom: 100px;
+}
+
 .container {
     height: 100%;
 }
