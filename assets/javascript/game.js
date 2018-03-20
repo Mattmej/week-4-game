@@ -8,12 +8,12 @@ Game Plan:
     c. Display attack power                                                                     (in progress)
 2. A prompt will appear on screen to choose a character.                                            (o)
 3. User will click on a character to play.                                                          (o)
-4. When clicked, the character will move to the battle area.
+4. When clicked, the character will move to the battle area.                                        (o)
     a. Move player character to another div
     b. Move enemy character to another div
 5. User will click on another character to fight.                                                   (o)
-6. [same as 4, but for the second character]
-7. Button to attack enemy will either appear or already be in the battle area.
+6. [same as 4, but for the second character]                                                        (o)
+7. Button to attack enemy will either appear or already be in the battle area.                  (in progress)
 8. When user presses attack button, messages will appear.
     a. You attacked [name] for [#] damage!
     b. [name] attacked you back for [#] damage!
@@ -75,12 +75,6 @@ var enemyIsClicked = false;
 var $selectedChar;
 var $selectedEnemy;
 
-// Adds the characters' names to the characters' portraits (will I need this?)
-// $("#char1-name").html(lukeSkywalker.name);
-// $("#char2-name").html(darthVader.name);
-// $("#char3-name").html(bobaFett.name);
-// $("#char4-name").html(jarBinks.name);
-
 
 // Asks the user to choose a character
 $(".message").html("<h2>Choose your character!</h2>");
@@ -101,19 +95,14 @@ $("#char4-hp").html(jarBinks.hp);
 
 //////////////////////////////////////////////////////////////
 
-// Functions
-
-// function turnGreen() {
-
-// }
-
-// $("#char1").click(turnGreen);
 
 
 function selectCharacters() {
     $(".charHolder").on("click", function() {                                               // everything inside this executes when this element is clicked
 
-        if (!playerIsClicked) {
+                                                                                            ////////////////////////////////////////////////////////////////
+
+        if (!playerIsClicked) {                                                             // if the player character has not been selected, then...
 
             $(this).toggleClass("player-select");                                           // turns the selected enemy green   
             $(".player-select").attr("id", "myChar");                                       // adds the "myChar" id to whoever is selected
@@ -121,6 +110,8 @@ function selectCharacters() {
             $(".message").html("<h2>Choose your opponent!</h2>");                           // displays this message
             $(this).removeClass("enemyHolder");                                             // prevents a user from selecting themselves as an enemy
             playerIsClicked = true;                                                         // says that the player has been clicked.
+
+                                                                                            ////////////////////////////////////////////////////////////////                                                                                            
 
             if (playerIsClicked && !enemyIsClicked) {                                       // if a player is selected but no enemy is selected, then...
                 
@@ -133,6 +124,8 @@ function selectCharacters() {
                     $(".charHolder").off("click");                                          // turns off click function for all elements with the "charHolder" class
                     enemyIsClicked = true;                                                  // says that the enemy has been clicked.
 
+                                                                                            ////////////////////////////////////////////////////////////////                    
+
                     if (playerIsClicked && enemyIsClicked) {                                // if both characters have been selected, then...
                         var $green = $selectedChar.detach();                                // detaches the selected character from his area on the page
                         $green.appendTo("#playerArea");                                     // adds the character to the player area
@@ -144,7 +137,7 @@ function selectCharacters() {
                         var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
                         $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
                     }
-
+                                        
                 })
             }
 
@@ -158,29 +151,6 @@ function selectCharacters() {
 }
 
 
-
-// function moveCharacters() {
-//     if (playerIsClicked && enemyIsClicked) {
-//         // $("#playerArea").append(selectedChar);
-//         // selectedChar.detach().appendTo("#playerArea");
-//         // selectedChar.detach();
-//         // $(".player-select").detach();
-//         // $("#enemyArea").append(selectedEnemy);
-
-//         // $selectedChar.detach().appendTo("#playerArea");
-//         $green = $selectedChar.detach();
-//         // $selectedEnemy.detach().appendTo("#enemyArea");
-//         $green.appendTo("#playerArea");
-
-
-//     }
-
-
-// }
-
-// var combatDisplay = {
-
-// }
 
 
 function displayForCombat() {
