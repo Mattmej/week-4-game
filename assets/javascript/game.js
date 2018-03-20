@@ -72,6 +72,9 @@ var charArray = [lukeSkywalker, darthVader, bobaFett, jarBinks];
 var playerIsClicked = false;
 var enemyIsClicked = false;
 
+var $selectedChar;
+var $selectedEnemy;
+
 // Adds the characters' names to the characters' portraits (will I need this?)
 // $("#char1-name").html(lukeSkywalker.name);
 // $("#char2-name").html(darthVader.name);
@@ -111,11 +114,14 @@ function selectCharacters() {
     $(".charHolder").on("click", function() {                               // everything inside this executes when this element is clicked
 
         if (!playerIsClicked) {
-            var selectedChar = $(".charHolder").attr("id", "myChar");       
-            $(".charHolder").attr("id", "myChar");                          // adds the "myChar" id to whoever is selected
+            // $selectedChar = $(".charHolder").attr("id", "myChar");    
+            $(this).toggleClass("player-select");                           // turns the selected enemy green   
+            $(".player-select").attr("id", "myChar");                          // adds the "myChar" id to whoever is selected
+            // selectedChar = document.getElementById("myChar");
+            $selectedChar = $("#myChar");
             $(".message").html("<h2>Choose your opponent!</h2>");           // displays this message
             // $(this).addClass("player-select");
-            $(this).toggleClass("player-select");                           // turns the selected enemy green
+            // $(this).toggleClass("player-select");                           // turns the selected enemy green
             $(this).removeClass("enemyHolder");                             // prevents a user from selecting themselves as an enemy
             playerIsClicked = true;
 
@@ -123,14 +129,26 @@ function selectCharacters() {
                 
                 $(".enemyHolder").on("click", function() {
 
-                    $(".charHolder").attr("id", "enemyChar");               // adds the "enemyChar" id to whoever is selected
-                    $(".message").html("<h2>Get ready to fight!</h2>");     // displays this message
+                    // $selectedEnemy = $(".charHolder").attr("id", "enemyChar");
                     $(this).toggleClass("enemy-select");                    // turns the selected enemy red
-                    $(".charHolder").off("click");                          // turns off click function
+                    $(".enemy-select").attr("id", "enemyChar");               // adds the "enemyChar" id to whoever is selected
+                    // selectedEnemy = document.getElementById("enemyChar");
+                    $selectedEnemy = $("#enemyChar");
+                    $(".message").html("<h2>Get ready to fight!</h2>");     // displays this message
+                    $(".charHolder").off("click");                          // turns off click function for all elements with the "charHolder" class
                     enemyIsClicked = true;
+
+                    if (playerIsClicked && enemyIsClicked) {
+                        var $green = $selectedChar.detach();
+                        $green.appendTo("#playerArea");
+
+                        var $red = $selectedEnemy.detach();
+                        $red.appendTo("#enemyArea");
+                    }
 
                 })
             }
+
 
         }
 
@@ -140,9 +158,25 @@ function selectCharacters() {
 }
 
 function moveCharacters() {
+    if (playerIsClicked && enemyIsClicked) {
+        // $("#playerArea").append(selectedChar);
+        // selectedChar.detach().appendTo("#playerArea");
+        // selectedChar.detach();
+        // $(".player-select").detach();
+        // $("#enemyArea").append(selectedEnemy);
+
+        // $selectedChar.detach().appendTo("#playerArea");
+        $green = $selectedChar.detach();
+        // $selectedEnemy.detach().appendTo("#enemyArea");
+        $green.appendTo("#playerArea");
+
+
+    }
+
 
 }
 
 selectCharacters();
+moveCharacters();
 
 

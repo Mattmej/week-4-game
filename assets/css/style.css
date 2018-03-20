@@ -57,7 +57,7 @@ body {
 #char1, #char2, #char3, #char4, .charHolder, .enemyHolder {
     /* position: relative; */
     width: 200px;
-    height: 200px;
+    height: 220px;
     /* line-height: 200px;
     padding: auto; */
 }
@@ -70,7 +70,7 @@ body {
 #char1-name, #char2-name, #char3-name, #char4-name {
     vertical-align: text-top;
     text-align: center;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 
 .message {
