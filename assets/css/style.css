@@ -54,7 +54,7 @@ body {
 
 }
 
-#char1, #char2, #char3, #char4, .charHolder, .enemyHolder {
+#char1, #char2, #char3, #char4, .charHolder, .enemyHolder, #playerArea, #enemyArea {
     /* position: relative; */
     width: 200px;
     height: 220px;
@@ -77,6 +77,15 @@ body {
     margin-bottom: 30px;
     text-align: center;
     font-family: 'Play', sans-serif;
+}
+
+#vs-sizer {
+    /* font-family: 'Play', sans-serif;
+    text-align: center; */
+    height: 100px;
+    width: 100px;
+    /* padding-top: 30px; */
+    margin-top: 50px;
 }
 
 .player-select {

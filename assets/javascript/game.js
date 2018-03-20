@@ -142,6 +142,13 @@ function selectCharacters() {
                         var $green = $selectedChar.detach();
                         $green.appendTo("#playerArea");
 
+                        var $activateVs = $("#vs").html("<img></img>").find("img");
+                        // $activateVs.attr("src", "assets/images/versus.png");
+                        // $activateVs.find("img").attr("src", "assets/images/versus.png");
+                        $activateVs.attr("src", "assets/images/versus.png");
+                        $activateVs.attr("id","vs-sizer");
+
+
                         var $red = $selectedEnemy.detach();
                         $red.appendTo("#enemyArea");
                     }
