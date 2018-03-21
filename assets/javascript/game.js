@@ -38,6 +38,7 @@ Game Plan:
 var lukeSkywalker = {
     name: "Luke Skywalker",
     hp: 100,
+    baseAttack: 5,
     attack: 5,
     counterAttack: 5,
     picture: "assets/images/luke-skywalker.jpg"
@@ -46,6 +47,7 @@ var lukeSkywalker = {
 var darthVader = {
     name: "Darth Vader",
     hp: 120,
+    baseAttack: 8,
     attack: 8,
     counterAttack: 8,
     picture: "assets/images/darth-vader.jpg"
@@ -54,6 +56,7 @@ var darthVader = {
 var bobaFett = {
     name: "Boba Fett",
     hp: 110,
+    baseAttack: 7,
     attack: 7,
     counterAttack: 7,
     picture: "assets/images/boba-fett.jpg"
@@ -62,6 +65,7 @@ var bobaFett = {
 var jarBinks = {
     name: "Jar Jar Binks",
     hp: 300,
+    baseAttack: 2,
     attack: 2,
     counterAttack: 2,
     picture: "assets/images/jarjar-binks.jpg"
@@ -75,8 +79,8 @@ var enemyIsClicked = false;
 var $selectedChar;
 var $selectedEnemy;
 
-// var attacker;
-// var defender;
+var attacker;
+var defender;
 
 
 // Asks the user to choose a character
@@ -142,7 +146,7 @@ function selectCharacters() {
 
                         displayForCombat();
                         getCombatantInfo();
-                        // fight();
+                        fight();
 
 
                     }
@@ -184,6 +188,7 @@ function displayForCombat() {
 
         var fightButton = document.createElement("button");
         $(fightButton).attr("type", "button");
+        $(fightButton).addClass("btn");
         $(fightButton).html("Attack");
         $(combatWrapper).append(fightButton);
 }
@@ -220,7 +225,7 @@ function getCombatantInfo() {
         $finder = $($selectedChar).find("p:first");
 
         if ($finder.html() == charArray[i].name) {
-            var attacker = charArray[i];
+            attacker = charArray[i];
             console.log(attacker);
 
         }
@@ -228,7 +233,7 @@ function getCombatantInfo() {
         $enemyFinder = $($selectedEnemy).find("p:first");
 
         if ($enemyFinder.html() == charArray[i].name) {
-            var defender = charArray[i];
+            defender = charArray[i];
             console.log(defender);
 
         }
@@ -239,6 +244,20 @@ function getCombatantInfo() {
 
 
 
+}
+
+function fight() {
+    $(".btn").on("click", function() {
+        defender.hp = defender.hp - attacker.attack;
+        attacker.hp = attacker.hp - defender.attack;
+
+        attacker.attack = attacker.attack + attacker.baseAttack;
+
+        console.log(attacker.hp);
+        console.log(defender.hp);
+
+
+    })
 }
 
 
