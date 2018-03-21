@@ -75,6 +75,9 @@ var enemyIsClicked = false;
 var $selectedChar;
 var $selectedEnemy;
 
+// var attacker;
+// var defender;
+
 
 // Asks the user to choose a character
 $(".message").html("<h2>Choose your character!</h2>");
@@ -138,7 +141,7 @@ function selectCharacters() {
                         $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
 
                         displayForCombat();
-                        // getCombatantInfo();
+                        getCombatantInfo();
                         // fight();
 
 
@@ -183,9 +186,59 @@ function displayForCombat() {
         $(fightButton).attr("type", "button");
         $(fightButton).html("Attack");
         $(combatWrapper).append(fightButton);
+}
 
+function getCombatantInfo() {
 
+    /* 
+    1. Gets the element of the player character
+        a. Checks to see if the element has a property pertaining to one of the character objects
+            i. Maybe look at classes and/or ids
+            ii. Or, check the child elements
+        b. If the element's property matches one of the character objects' properties,
+            then let the webpage know that the image that you selected belongs to that character
     
+    2. Do the same for the enemy character.
+
+
+    Possible methods:
+    * contents()
+        $finder = $($selectedChar).find("p:first");
+        if ($finder.contents() == charArray[i].name) {
+            attacker = charArray[i];
+        }
+
+        $enemyFinder = $($selectedEnemy).find("p:first");
+    
+
+    */
+
+
+
+    for (i = 0; i < charArray.length; i++) {    // cycle through array elements of charArray
+        
+        $finder = $($selectedChar).find("p:first");
+
+        if ($finder.html() == charArray[i].name) {
+            var attacker = charArray[i];
+            console.log(attacker);
+
+        }
+
+        $enemyFinder = $($selectedEnemy).find("p:first");
+
+        if ($enemyFinder.html() == charArray[i].name) {
+            var defender = charArray[i];
+            console.log(defender);
+
+        }
+    }
+
+        // $finder = $($selectedChar).find("p:first");
+        // console.log($finder.html());
+
+
+
 }
 
 
