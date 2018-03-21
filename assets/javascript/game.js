@@ -69,8 +69,8 @@ var jarBinks = {
 
 var charArray = [lukeSkywalker, darthVader, bobaFett, jarBinks];
 
-var playerIsClicked = false;
-var enemyIsClicked = false;
+var playerIsClicked;
+var enemyIsClicked;
 
 var $selectedChar;
 var $selectedEnemy;
@@ -97,72 +97,144 @@ $("#char4-hp").html(jarBinks.hp);
 
 
 
-function selectCharacters() {
-    $(".charHolder").on("click", function() {                                               // everything inside this executes when this element is clicked
+// function selectCharacters() {
+//     $(".charHolder").on("click", function() {                                               // everything inside this executes when this element is clicked
 
-                                                                                            ////////////////////////////////////////////////////////////////
+//                                                                                             ////////////////////////////////////////////////////////////////
 
-        if (!playerIsClicked) {                                                             // if the player character has not been selected, then...
+//         if (!playerIsClicked) {                                                             // if the player character has not been selected, then...
 
-            $(this).toggleClass("player-select");                                           // turns the selected enemy green   
-            $(".player-select").attr("id", "myChar");                                       // adds the "myChar" id to whoever is selected
-            $selectedChar = $("#myChar");
-            $(".message").html("<h2>Choose your opponent!</h2>");                           // displays this message
-            $(this).removeClass("enemyHolder");                                             // prevents a user from selecting themselves as an enemy
-            playerIsClicked = true;                                                         // says that the player has been clicked.
+//             $(this).toggleClass("player-select");                                           // turns the selected enemy green   
+//             $(".player-select").attr("id", "myChar");                                       // adds the "myChar" id to whoever is selected
+//             $selectedChar = $("#myChar");
+//             $(".message").html("<h2>Choose your opponent!</h2>");                           // displays this message
+//             $(this).removeClass("enemyHolder");                                             // prevents a user from selecting themselves as an enemy
+//             playerIsClicked = true;                                                         // says that the player has been clicked.
+//             // return(playerIsClicked);
+//             console.log("Log inside function: " + playerIsClicked);
 
-                                                                                            ////////////////////////////////////////////////////////////////                                                                                            
+//                                                                                             ////////////////////////////////////////////////////////////////                                                                                            
 
-            if (playerIsClicked && !enemyIsClicked) {                                       // if a player is selected but no enemy is selected, then...
+//             if (playerIsClicked && !enemyIsClicked) {                                       // if a player is selected but no enemy is selected, then...
                 
-                $(".enemyHolder").on("click", function() {
+//                 $(".enemyHolder").on("click", function() {
 
-                    $(this).toggleClass("enemy-select");                                    // turns the selected enemy red
-                    $(".enemy-select").attr("id", "enemyChar");                             // adds the "enemyChar" id to whoever is selected
-                    $selectedEnemy = $("#enemyChar");                                       // $selectedEnemy => holds the element with the "enemyChar" id
-                    $(".message").html("<h2>Get ready to fight!</h2>");                     // displays this message
-                    $(".charHolder").off("click");                                          // turns off click function for all elements with the "charHolder" class
-                    enemyIsClicked = true;                                                  // says that the enemy has been clicked.
+//                     $(this).toggleClass("enemy-select");                                    // turns the selected enemy red
+//                     $(".enemy-select").attr("id", "enemyChar");                             // adds the "enemyChar" id to whoever is selected
+//                     $selectedEnemy = $("#enemyChar");                                       // $selectedEnemy => holds the element with the "enemyChar" id
+//                     $(".message").html("<h2>Get ready to fight!</h2>");                     // displays this message
+//                     $(".charHolder").off("click");                                          // turns off click function for all elements with the "charHolder" class
+//                     enemyIsClicked = true;                                                  // says that the enemy has been clicked.
+//                     // return(enemyIsClicked);
 
-                                                                                            ////////////////////////////////////////////////////////////////                    
+//                                                                                             ////////////////////////////////////////////////////////////////                    
 
-                    if (playerIsClicked && enemyIsClicked) {                                // if both characters have been selected, then...
-                        var $green = $selectedChar.detach();                                // detaches the selected character from his area on the page
-                        $green.appendTo("#playerArea");                                     // adds the character to the player area
+//                     if (playerIsClicked && enemyIsClicked) {                                // if both characters have been selected, then...
+//                         var $green = $selectedChar.detach();                                // detaches the selected character from his area on the page
+//                         $green.appendTo("#playerArea");                                     // adds the character to the player area
 
-                        var $activateVs = $("#vs").html("<img></img>").find("img");         // $activateVs => holds the <img> child element of the element with #vs
-                        $activateVs.attr("src", "assets/images/versus.png");                // attaches the image to the <img> element
-                        $activateVs.attr("id","vs-sizer");                                  // adds the #vs-sizer id to the <img> element
+//                         var $activateVs = $("#vs").html("<img></img>").find("img");         // $activateVs => holds the <img> child element of the element with #vs
+//                         $activateVs.attr("src", "assets/images/versus.png");                // attaches the image to the <img> element
+//                         $activateVs.attr("id","vs-sizer");                                  // adds the #vs-sizer id to the <img> element
 
-                        var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
-                        $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
-                    }
+//                         var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
+//                         $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
+//                     }
                                         
-                })
-            }
+//                 })
+//             }
 
 
-        }
+//         }
+
+//     })
+
+
+
+// }
+
+function selectPlayerCharacter() {
+
+    $(".charHolder").click(function() {                                               // everything inside this executes when this element is clicked
+        $(this).toggleClass("player-select");                                           // turns the selected enemy green   
+        $(".player-select").attr("id", "myChar");                                       // adds the "myChar" id to whoever is selected
+        $selectedChar = $("#myChar");
+        $(".message").html("<h2>Choose your opponent!</h2>");                           // displays this message
+        $(this).removeClass("enemyHolder");                                             // prevents a user from selecting themselves as an enemy
+        // $(".charHolder").off("click");                                          // turns off click function for all elements with the "charHolder" class
+        // return(playerIsClicked);
+        // console.log("Log inside function: " + playerIsClicked);
+        playerIsClicked = true;                                                         // says that the player has been clicked.
+    })
+}
+
+function selectEnemyCharacter() {
+    $(".enemyHolder").click(function() {
+        $(this).toggleClass("enemy-select");                                    // turns the selected enemy red
+        $(".enemy-select").attr("id", "enemyChar");                             // adds the "enemyChar" id to whoever is selected
+        $selectedEnemy = $("#enemyChar");                                       // $selectedEnemy => holds the element with the "enemyChar" id
+        $(".message").html("<h2>Get ready to fight!</h2>");                     // displays this message
+        $(".charHolder").off("click");                                          // turns off click function for all elements with the "charHolder" class
+        enemyIsClicked = true;                                                  // says that the enemy has been clicked.
+        // return(enemyIsClicked);
 
     })
+}
 
+function moveCharacters() {
 
+    var $green = $selectedChar.detach();                                // detaches the selected character from his area on the page
+    $green.appendTo("#playerArea");                                     // adds the character to the player area
+
+    var $activateVs = $("#vs").html("<img></img>").find("img");         // $activateVs => holds the <img> child element of the element with #vs
+    $activateVs.attr("src", "assets/images/versus.png");                // attaches the image to the <img> element
+    $activateVs.attr("id","vs-sizer");                                  // adds the #vs-sizer id to the <img> element
+
+    var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
+    $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
 
 }
 
 
+// function displayForCombat() {
+//     // 1. add an element in the space between the unpicked characters (firstChild).after()
+//     // 2. add a child element for commentary on what happens
+//     // 3. add a child element underneath that has the button to fight.
 
+//     // var $battleMessage = $(".charArea > .charHolder:first-child").after("<h6></h6>");
+//     var $battleMessage = $(".charArea > .charHolder:first-child");
+//     $battleMessage2 = $battleMessage.after("<h6></h6>").find("h6");
+//     $battleMessage2.html("test");
 
-function displayForCombat() {
-    // 1. add an element in the space between the unpicked characters (firstChild).after()
-    // 2. add a child element for commentary on what happens
-    // 3. add a child element underneath that has the button to fight.
-
-    // $(".charArea:")
+//     // $battleMessage.find("h6").html("test");
+//     // $battleMessage.html("test");
     
+// }
+
+selectPlayerCharacter();
+console.log(playerIsClicked);
+
+if (playerIsClicked) {
+    selectEnemyCharacter();
 }
 
 
+// if (!playerIsClicked) {
+//     selectPlayerCharacter();
+//     console.log(playerIsClicked);
+// }
+
+// else if (playerIsClicked) {
+//     selectEnemyCharacter();
+// }
+
+// if (playerIsClicked && !enemyIsClicked) {
+//     selectEnemyCharacter();
+// }
+
+// if (playerIsClicked && enemyIsClicked) {
+//     moveCharacters();
+// }
 
 
 
@@ -170,13 +242,10 @@ function displayForCombat() {
 
 
 
-
-
-
-selectCharacters();
-console.log(playerIsClicked);
-console.log(enemyIsClicked);
-displayForCombat();
+// selectCharacters();
+// console.log("Log outside function: " + playerIsClicked);
+// console.log(enemyIsClicked);
+// displayForCombat();
 // moveCharacters();
 
 
