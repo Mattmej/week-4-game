@@ -166,12 +166,23 @@ function displayForCombat() {
     // $combatMsg.addClass("sw-text");
     // $combatMsg.css("margin-top", "100px");
 
-    var combatMsg = document.createElement("div");
-    $(combatMsg).html("This is a test!");
-    $(combatMsg).addClass("sw-text");
-    $(combatMsg).css("padding-top", "50px");
+    var combatWrapper = document.createElement("div");
+    $(combatWrapper).addClass("d-flex flex-column justify-content-around");
+    $(".charArea > figure:first-child").after(combatWrapper);
 
-    $(".charArea > figure:first-child").after(combatMsg);
+
+        var combatMsg = document.createElement("div");
+        $(combatMsg).html("This is a test!");
+        $(combatMsg).addClass("sw-text");
+        $(combatWrapper).append(combatMsg);
+    // $(combatMsg).css("padding-top", "50px");
+
+    // $(".charArea > figure:first-child").after(combatMsg);
+
+        var fightButton = document.createElement("button");
+        $(fightButton).attr("type", "button");
+        $(fightButton).html("Attack");
+        $(combatWrapper).append(fightButton);
 
 
     
