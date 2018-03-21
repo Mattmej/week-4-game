@@ -136,17 +136,20 @@ function selectCharacters() {
 
                         var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
                         $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
+
+                        displayForCombat();
+                        // getCombatantInfo();
+                        // fight();
+
+
                     }
                                         
                 })
             }
 
-
         }
 
     })
-
-
 
 }
 
@@ -158,7 +161,19 @@ function displayForCombat() {
     // 2. add a child element for commentary on what happens
     // 3. add a child element underneath that has the button to fight.
 
-    // $(".charArea:")
+    // var $combatMsg = $(".charArea > figure:first-child").after("<div>This is a test!</div>");
+    // var $combatMsg = $(".charArea > figure:first-child").html("<div></div>");
+    // $combatMsg.addClass("sw-text");
+    // $combatMsg.css("margin-top", "100px");
+
+    var combatMsg = document.createElement("div");
+    $(combatMsg).html("This is a test!");
+    $(combatMsg).addClass("sw-text");
+    $(combatMsg).css("padding-top", "50px");
+
+    $(".charArea > figure:first-child").after(combatMsg);
+
+
     
 }
 
@@ -174,9 +189,9 @@ function displayForCombat() {
 
 
 selectCharacters();
-console.log(playerIsClicked);
-console.log(enemyIsClicked);
-displayForCombat();
+// console.log(playerIsClicked);
+// console.log(enemyIsClicked);
+// displayForCombat();
 // moveCharacters();
 
 
