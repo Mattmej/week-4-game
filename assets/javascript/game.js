@@ -3,9 +3,9 @@
 Game Plan:
 
 1. Characters are displayed on the screen.                                                          (A)
-    a. Display portrait                                                                             (o)
-    b. Display hp                                                                                   (o)
-    c. Display attack power                                                                         (o)
+    a. Display portrait                                                                             
+    b. Display hp                                                                                   
+    c. Display attack power                                                                         
 
 2. A prompt will appear on screen to choose a character.                                            (A)
 
@@ -21,9 +21,9 @@ Game Plan:
 
 7. Button to attack enemy will either appear or already be in the battle area.                      (A)
 
-8. When user presses attack button, messages will appear.                                       (in progress)
-    a. You attacked [name] for [#] damage!                                                          (o)
-    b. [name] attacked you back for [#] damage!
+8. When user presses attack button, messages will appear.                                           (A)
+    a. You attacked [name] for [#] damage!                                                          
+    b. [name] attacked you back for [#] damage!                                                     
 
 9. Every time the attack button is pressed, the user's attack power will increase.                  (A)
     a. New Attack Power = New Attack Power + Base Attack Power;
@@ -93,7 +93,8 @@ var $selectedEnemy;
 var attacker;
 var defender;
 
-var combatMsg;
+var combatMsg1;
+var combatMsg2;
 
 
 // Asks the user to choose a character
@@ -187,10 +188,15 @@ function displayForCombat() {
                                                                                                 first <figure> element of the element with ".charArea" */
 
 
-        combatMsg = document.createElement("div");                                          // "combatMsg" is a <div> element
-        // $(combatMsg).html("This is a test!");
-        $(combatMsg).addClass("sw-text");                                                   // adds the ".sw-text" class to the "combatMsg" element
-        $(combatWrapper).append(combatMsg);                                                 // adds the "combatMsg" element  as a child to the "combatWrapper" element 
+        combatMsg1 = document.createElement("div");                                          // "combatMsg1" is a <div> element
+        // $(combatMsg1).html("This is a test!");
+        $(combatMsg1).addClass("sw-text");                                                   // adds the ".sw-text" class to the "combatMsg1" element
+        $(combatWrapper).append(combatMsg1);                                                 // adds the "combatMsg1" element  as a child to the "combatWrapper" element 
+
+        combatMsg2 = document.createElement("div");                                          // "combatMsg2" is a <div> element
+        // $(combatMsg2).html("This is a test!");
+        $(combatMsg2).addClass("sw-text");                                                  
+        $(combatWrapper).append(combatMsg2);   
 
         var fightButton = document.createElement("button");                                 // "fightButton" is a <button> element
         $(fightButton).attr("type", "button");                                              // adds the "type = 'button'" attribute to the "fightButton" element
@@ -244,12 +250,17 @@ function fight() {
         var $defenderHpDisplay = $($selectedEnemy).find("p:nth-of-type(2)");    // gets the enemy's displayed hp
         $defenderHpDisplay.html(defender.hp);                                   // displays the new value of the enemy's hp
 
-        // battle message that displays
-        $(combatMsg).html(attacker.name + " attacked " + defender.name + " for " + attacker.attack + " damage!");
+        $(combatMsg2).html(defender.name + " attacked " + attacker.name + " for " + defender.attack + " damage!");
+
+       
 
         attacker.hp = attacker.hp - defender.attack;                            // attacker's hp decreases by the defender's attack power.
         var $playerHpDisplay = $($selectedChar).find("p:nth-of-type(2)");       // gets the player's displayed hp
         $playerHpDisplay.html(attacker.hp);                                     // displays the new value of the attacker's hp
+
+        // battle message that displays
+        $(combatMsg1).html(attacker.name + " attacked " + defender.name + " for " + attacker.attack + " damage!");
+
 
         attacker.attack = attacker.attack + attacker.baseAttack;                // increases the attacker's attack power after every attack
 
