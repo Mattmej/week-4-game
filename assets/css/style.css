@@ -41,7 +41,7 @@ body {
     /* height: 200px; */
 /* } */
 
-#charSlot1, #charSlot2, #charSlot3, #charSlot4 {
+#charSlot1, #charSlot2, #charSlot3, #charSlot4{
     /* width: 200px; */
     /* height: 200px; */
     /* position: absolute; */
@@ -58,7 +58,7 @@ body {
 
 }
 
-#char1, #char2, #char3, #char4, .charHolder, .enemyHolder, #playerArea, #enemyArea {
+#char1, #char2, #char3, #char4, .charHolder, .enemyHolder, #playerArea, #enemyArea, .empty-block {
     /* position: relative; */
     width: 200px;
     height: 220px;

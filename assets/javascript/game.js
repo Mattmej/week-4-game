@@ -34,8 +34,8 @@ Game Plan:
     b. Prompt to start a new game.
 
 11. When opponent's hp = 0,
-    a. Character disappears from the screen
-    b. Prompt appears saying what happened.
+    a. Character disappears from the screen                                                         (o)
+    b. Prompt appears saying what happened.                                                         (o)
         i. You defeated ___
         ii. Select a new character to fight.
         
@@ -153,6 +153,44 @@ function selectCharacters() {
 }
 
 
+function chooseEnemy() {
+    $(".enemyHolder").on("click", function() {
+
+        $(this).toggleClass("enemy-select");                                    // turns the selected enemy red
+        $(".enemy-select").attr("id", "enemyChar");                             // adds the "enemyChar" id to whoever is selected
+        $selectedEnemy = $("#enemyChar");                                       // $selectedEnemy => holds the element with the "enemyChar" id
+        $(".message").html("<h2>Get ready to fight!</h2>");                     // displays this message
+        $(".charHolder").off("click");                                          // turns off click function for all elements with the "charHolder" class
+        enemyIsClicked = true;                                                  // says that the enemy has been clicked.
+        console.log(enemyIsClicked);
+
+        if (playerIsClicked && enemyIsClicked) {                                // if both characters have been selected, then...
+
+            // var $emptyItem = $(".charArea").append("<div>text</div>");
+            // $emptyItem.detach();
+            var $green = $selectedChar.detach();                                // detaches the selected character from his area on the page
+            $green.appendTo("#playerArea");                                     // adds the character to the player area
+
+            var $activateVs = $("#vs").html("<img></img>").find("img");         // $activateVs => holds the <img> child element of the element with #vs
+            $activateVs.attr("src", "assets/images/versus.png");                // attaches the image to the <img> element
+            $activateVs.attr("id","vs-sizer");                                  // adds the #vs-sizer id to the <img> element
+
+            var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
+            $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
+
+            displayForCombat();                                                 // creates fight button and space for messages
+            getCombatantInfo();                                                 // attaches the characters' object to the selected character portraits
+            fight();                                                            // has what happens when user presses the "fight" button
+            
+            // if (defender.hp <= 0) {
+            //     checkIfDead();
+            // }
+
+        }
+                    
+    })
+}
+
 
 
 function displayForCombat() {
@@ -160,6 +198,8 @@ function displayForCombat() {
     // 2. add a child element for commentary on what happens
     // 3. add a child element underneath that has the button to fight.
     // var fightButton;
+    // var $emptyItem = $(".charArea").append("<div></div>");
+    // $emptyItem.remove();
     $(combatWrapper).remove(); 
     combatWrapper = document.createElement("div");                                      // "combatWrapper" is a <div> element
     $(combatWrapper).addClass("d-flex flex-column justify-content-around");                 // adds these classes to the "combatWrapper" element
@@ -220,9 +260,11 @@ function getCombatantInfo() {
         }
     }
 
-        // $finder = $($selectedChar).find("p:first");
-        // console.log($finder.html());
+    // $finder = $($selectedChar).find("p:first");
+    // console.log($finder.html());
 }
+
+
 
 function fight() {
     $(".btn").on("click", function() {                                          // when you click the "fight" button, then...
@@ -258,19 +300,68 @@ function fight() {
 }
 
 function checkIfDead() {
-    // if (defender.hp <= 0) {
-        $selectedEnemy.remove();
-        $(combatMsg1).html(defender.name + " has fallen!");
-        $(combatMsg2).html("Choose another opponent!");
-        // charArray.splice(0, charArray.indexOf(defender));
-        charArray.splice(charArray.indexOf(defender), 1);
-        console.log(charArray);
+    
+    $selectedEnemy.remove();
+    $(combatMsg1).html(defender.name + " has fallen!");
+    $(combatMsg2).html("Choose another opponent!");
+    // charArray.splice(0, charArray.indexOf(defender));
+    charArray.splice(charArray.indexOf(defender), 1);
+    console.log(charArray);
+    $(".btn").off("click");
+
+    if (charArray.length > 2) {
         chooseEnemy();
-        // selectCharacters();
-    // }
+    }
+    // selectCharacters();
+
+    if (charArray.length === 2) {
+        chooseLastEnemy();
+    }
+   
 }
 
-function chooseEnemy() {
+function chooseLastEnemy() {
+
+    // $(combatWrapper).remove(); 
+    // combatWrapper = document.createElement("div");                                      // "combatWrapper" is a <div> element
+    // $(combatWrapper).addClass("d-flex flex-column justify-content-around");                 // adds these classes to the "combatWrapper" element
+    // $(fightButton).remove();
+    // $(".charArea > figure:first-child").after(combatWrapper);                               /* inserts the "combatWrapper" element after the 
+    //                                                                                             first <figure> element of the element with ".charArea" */
+
+
+    //     combatMsg1 = document.createElement("div");                                          // "combatMsg1" is a <div> element
+    //     // $(combatMsg1).html("This is a test!");
+    //     $(combatMsg1).addClass("sw-text");                                                   // adds the ".sw-text" class to the "combatMsg1" element
+    //     $(combatWrapper).append(combatMsg1);                                                 // adds the "combatMsg1" element  as a child to the "combatWrapper" element 
+
+    //     combatMsg2 = document.createElement("div");                                          // "combatMsg2" is a <div> element
+    //     // $(combatMsg2).html("This is a test!");
+    //     $(combatMsg2).addClass("sw-text");                                                  
+    //     $(combatWrapper).append(combatMsg2);   
+
+    //     fightButton = document.createElement("button");                                 // "fightButton" is a <button> element
+    //     $(fightButton).attr("type", "button");                                              // adds the "type = 'button'" attribute to the "fightButton" element
+    //     $(fightButton).addClass("btn");                                                     // adds the class ".btn" to the "fightButton" element
+    //     $(fightButton).html("Attack");                                                      // the button now has the word "Attack" on it.
+    //     $(combatWrapper).append(fightButton);                                               // adds this button to the "combatWrapper" element as its child
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // var $emptyItem = $selectedEnemy.after("<div></div>");
+    // var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
+    // $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
+
+    // displayForCombat();                                                 // creates fight button and space for messages
+
+    // $emptyItem.remove();
+
+    // getCombatantInfo();                                                 // attaches the characters' object to the selected character portraits
+    // fight();                                                            // has what happens when user presses the "fight" button
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     $(".enemyHolder").on("click", function() {
 
         $(this).toggleClass("enemy-select");                                    // turns the selected enemy red
@@ -282,28 +373,65 @@ function chooseEnemy() {
         console.log(enemyIsClicked);
 
         if (playerIsClicked && enemyIsClicked) {                                // if both characters have been selected, then...
-            var $green = $selectedChar.detach();                                // detaches the selected character from his area on the page
-            $green.appendTo("#playerArea");                                     // adds the character to the player area
 
-            var $activateVs = $("#vs").html("<img></img>").find("img");         // $activateVs => holds the <img> child element of the element with #vs
-            $activateVs.attr("src", "assets/images/versus.png");                // attaches the image to the <img> element
-            $activateVs.attr("id","vs-sizer");                                  // adds the #vs-sizer id to the <img> element
+            // var $emptyItem = $(".charArea").append("<div>text</div>");
+            // $emptyItem.detach();
+            // var $green = $selectedChar.detach();                                // detaches the selected character from his area on the page
+            // $green.appendTo("#playerArea");                                     // adds the character to the player area
 
-            var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
-            $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
+            // var $activateVs = $("#vs").html("<img></img>").find("img");         // $activateVs => holds the <img> child element of the element with #vs
+            // $activateVs.attr("src", "assets/images/versus.png");                // attaches the image to the <img> element
+            // $activateVs.attr("id","vs-sizer");                                  // adds the #vs-sizer id to the <img> element
 
-            displayForCombat();                                                 // creates fight button and space for messages
-            getCombatantInfo();                                                 // attaches the characters' object to the selected character portraits
-            fight();                                                            // has what happens when user presses the "fight" button
+            // var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
+            // $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
+
+            // displayForCombat();                                                 // creates fight button and space for messages
+            // getCombatantInfo();                                                 // attaches the characters' object to the selected character portraits
+            // fight();                                                            // has what happens when user presses the "fight" button
             
             // if (defender.hp <= 0) {
             //     checkIfDead();
             // }
 
+             // $selectedEnemy => holds the element with the "enemyChar" id
+
+            // var $emptyItem = $selectedEnemy.after("<div></div>");
+            var emptyItem = document.createElement("figure");
+            var emptyItem2 = document.createElement("figure");
+            $(emptyItem).addClass("empty-block");
+            $(emptyItem2).addClass("empty-block");
+            $selectedEnemy.after(emptyItem2);
+            $selectedEnemy.before(emptyItem);
+            var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
+            $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
+
+            displayForCombat();                                                 // creates fight button and space for messages
+
+            // $emptyItem.remove();
+
+            getCombatantInfo();                                                 // attaches the characters' object to the selected character portraits
+            fight();                                                            // has what happens when user presses the "fight" button
+
         }
                     
     })
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
 
 
 
