@@ -43,7 +43,7 @@ Game Plan:
     a. Win screen displays.                                                                         
     b. Press button to play again.                                                              
 
-
+13. Need to balance game so that the player can get a game over                                 (in progress)
 
 */
 
@@ -347,6 +347,16 @@ function displayWin() {
     $(fightButton).html("New Game");
     $(combatMsg1).html("May the Force be with you.");
     $(combatMsg2).html("Click button to start a new game.");
+
+    $(fightButton).on("click", function() {
+        location.reload();
+    })
+}
+
+function gameOver() {
+    $(".message").html("<h2>Game Over!</h2>");
+    $(combatMsg1).html("Try again?");
+    $(fightButton).html("New Game");
 
     $(fightButton).on("click", function() {
         location.reload();
