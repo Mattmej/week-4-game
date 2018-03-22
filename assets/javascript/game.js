@@ -82,6 +82,8 @@ var $selectedEnemy;
 var attacker;
 var defender;
 
+var combatMsg;
+
 
 // Asks the user to choose a character
 $(".message").html("<h2>Choose your character!</h2>");
@@ -178,8 +180,8 @@ function displayForCombat() {
     $(".charArea > figure:first-child").after(combatWrapper);
 
 
-        var combatMsg = document.createElement("div");
-        $(combatMsg).html("This is a test!");
+        combatMsg = document.createElement("div");
+        // $(combatMsg).html("This is a test!");
         $(combatMsg).addClass("sw-text");
         $(combatWrapper).append(combatMsg);
     // $(combatMsg).css("padding-top", "50px");
@@ -249,9 +251,17 @@ function getCombatantInfo() {
 function fight() {
     $(".btn").on("click", function() {
         defender.hp = defender.hp - attacker.attack;
+        var $defenderHpDisplay = $($selectedEnemy).find("p:nth-of-type(2)");
+        $defenderHpDisplay.html(defender.hp);
+        $(combatMsg).html(attacker.name + " attacked " + defender.name + " for " + attacker.attack + " damage!");
+
         attacker.hp = attacker.hp - defender.attack;
+        var $playerHpDisplay = $($selectedChar).find("p:nth-of-type(2)");
+        $playerHpDisplay.html(attacker.hp);
 
         attacker.attack = attacker.attack + attacker.baseAttack;
+
+        // $("#char1-hp").html(lukeSkywalker.hp);
 
         console.log(attacker.hp);
         console.log(defender.hp);
