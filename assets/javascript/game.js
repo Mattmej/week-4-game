@@ -95,6 +95,8 @@ var defender;
 
 var combatMsg1;
 var combatMsg2;
+var fightButton;
+var combatWrapper;
 
 
 // Asks the user to choose a character
@@ -157,9 +159,11 @@ function displayForCombat() {
     // 1. add an element in the space between the unpicked characters (firstChild).after()
     // 2. add a child element for commentary on what happens
     // 3. add a child element underneath that has the button to fight.
-
-    var combatWrapper = document.createElement("div");                                      // "combatWrapper" is a <div> element
+    // var fightButton;
+    $(combatWrapper).remove(); 
+    combatWrapper = document.createElement("div");                                      // "combatWrapper" is a <div> element
     $(combatWrapper).addClass("d-flex flex-column justify-content-around");                 // adds these classes to the "combatWrapper" element
+    $(fightButton).remove();
     $(".charArea > figure:first-child").after(combatWrapper);                               /* inserts the "combatWrapper" element after the 
                                                                                                 first <figure> element of the element with ".charArea" */
 
@@ -174,7 +178,7 @@ function displayForCombat() {
         $(combatMsg2).addClass("sw-text");                                                  
         $(combatWrapper).append(combatMsg2);   
 
-        var fightButton = document.createElement("button");                                 // "fightButton" is a <button> element
+        fightButton = document.createElement("button");                                 // "fightButton" is a <button> element
         $(fightButton).attr("type", "button");                                              // adds the "type = 'button'" attribute to the "fightButton" element
         $(fightButton).addClass("btn");                                                     // adds the class ".btn" to the "fightButton" element
         $(fightButton).html("Attack");                                                      // the button now has the word "Attack" on it.
@@ -261,6 +265,7 @@ function checkIfDead() {
         // charArray.splice(0, charArray.indexOf(defender));
         charArray.splice(charArray.indexOf(defender), 1);
         console.log(charArray);
+        chooseEnemy();
         // selectCharacters();
     // }
 }
