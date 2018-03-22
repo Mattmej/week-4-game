@@ -170,11 +170,6 @@ function displayForCombat() {
     // 2. add a child element for commentary on what happens
     // 3. add a child element underneath that has the button to fight.
 
-    // var $combatMsg = $(".charArea > figure:first-child").after("<div>This is a test!</div>");
-    // var $combatMsg = $(".charArea > figure:first-child").html("<div></div>");
-    // $combatMsg.addClass("sw-text");
-    // $combatMsg.css("margin-top", "100px");
-
     var combatWrapper = document.createElement("div");
     $(combatWrapper).addClass("d-flex flex-column justify-content-around");
     $(".charArea > figure:first-child").after(combatWrapper);
@@ -184,9 +179,6 @@ function displayForCombat() {
         // $(combatMsg).html("This is a test!");
         $(combatMsg).addClass("sw-text");
         $(combatWrapper).append(combatMsg);
-    // $(combatMsg).css("padding-top", "50px");
-
-    // $(".charArea > figure:first-child").after(combatMsg);
 
         var fightButton = document.createElement("button");
         $(fightButton).attr("type", "button");
@@ -206,17 +198,6 @@ function getCombatantInfo() {
             then let the webpage know that the image that you selected belongs to that character
     
     2. Do the same for the enemy character.
-
-
-    Possible methods:
-    * contents()
-        $finder = $($selectedChar).find("p:first");
-        if ($finder.contents() == charArray[i].name) {
-            attacker = charArray[i];
-        }
-
-        $enemyFinder = $($selectedEnemy).find("p:first");
-    
 
     */
 
@@ -263,8 +244,8 @@ function fight() {
 
         // $("#char1-hp").html(lukeSkywalker.hp);
 
-        console.log(attacker.hp);
-        console.log(defender.hp);
+        // console.log(attacker.hp);
+        // console.log(defender.hp);
 
 
     })
@@ -282,9 +263,5 @@ function fight() {
 
 
 selectCharacters();
-// console.log(playerIsClicked);
-// console.log(enemyIsClicked);
-// displayForCombat();
-// moveCharacters();
 
 
