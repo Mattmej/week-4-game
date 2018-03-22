@@ -61,15 +61,23 @@ body {
 #char1, #char2, #char3, #char4, .charHolder, .enemyHolder, #playerArea, #enemyArea, .empty-block {
     /* position: relative; */
     width: 200px;
-    height: 220px;
+    /* height: 220px; */
+    height: 255px;
     /* line-height: 200px;
     padding: auto; */
 }
 
-#char1-hp, #char2-hp, #char3-hp, #char4-hp {
+#char1-hp, #char2-hp, #char3-hp, #char4-hp, #char1-atk, #char2-atk, #char3-atk, #char4-atk {
     vertical-align: text-bottom;
     text-align: center;
 }
+
+/* #char1-atk, #char2-atk, #char3-atk, #char4-atk {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    margin-bottom:
+} */
+
 
 #char1-name, #char2-name, #char3-name, #char4-name {
     vertical-align: text-top;

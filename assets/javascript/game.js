@@ -2,10 +2,10 @@
 
 Game Plan:
 
-1. Characters are displayed on the screen.                                                          ()
-    a. Display portrait                                                                             (o)
-    b. Display hp                                                                                   (o)
-    c. Display attack power                                                                     (in progress)                                                                     
+1. Characters are displayed on the screen.                                                          (A)
+    a. Display portrait                                                                             
+    b. Display hp                                                                                   
+    c. Display attack power                                                                                                                                              
 
 2. A prompt will appear on screen to choose a character.                                            (A)
 
@@ -114,10 +114,16 @@ $("#charSlot3").attr("src", bobaFett.picture);
 $("#charSlot4").attr("src", jarBinks.picture);
 
 // Adds the characters' current HP to the portrait
-$("#char1-hp").html(lukeSkywalker.hp);
-$("#char2-hp").html(darthVader.hp);
-$("#char3-hp").html(bobaFett.hp);
-$("#char4-hp").html(jarBinks.hp);
+$("#char1-hp").html("HP: " + lukeSkywalker.hp);
+$("#char2-hp").html("HP: " + darthVader.hp);
+$("#char3-hp").html("HP: " + bobaFett.hp);
+$("#char4-hp").html("HP: " + jarBinks.hp);
+
+// Add the characters' attack power to the portrait
+$("#char1-atk").html("Attack: " + lukeSkywalker.attack);
+$("#char2-atk").html("Attack: " + darthVader.attack);
+$("#char3-atk").html("Attack: " + bobaFett.attack);
+$("#char4-atk").html("Attack: " + jarBinks.attack);
 
 //////////////////////////////////////////////////////////////
 
@@ -253,19 +259,21 @@ function fight() {
     $(".btn").on("click", function() {                                          // when you click the "fight" button, then...
         defender.hp = defender.hp - attacker.attack;                            // defender's hp decreases by the attacker's attack power
         var $defenderHpDisplay = $($selectedEnemy).find("p:nth-of-type(2)");    // gets the enemy's displayed hp
-        $defenderHpDisplay.html(defender.hp);                                   // displays the new value of the enemy's hp
+        $defenderHpDisplay.html("HP: " + defender.hp);                                   // displays the new value of the enemy's hp
 
         // message: "[Defender] attacked [attacker] for [#] damage!"
         $(combatMsg2).html(defender.name + " attacked " + attacker.name + " for " + defender.attack + " damage!");
 
         attacker.hp = attacker.hp - defender.attack;                            // attacker's hp decreases by the defender's attack power.
         var $playerHpDisplay = $($selectedChar).find("p:nth-of-type(2)");       // gets the player's displayed hp
-        $playerHpDisplay.html(attacker.hp);                                     // displays the new value of the attacker's hp
+        $playerHpDisplay.html("HP: " + attacker.hp);                                     // displays the new value of the attacker's hp
 
         // message: "[Attacker] attacked [defender] for [#] damage!"
         $(combatMsg1).html(attacker.name + " attacked " + defender.name + " for " + attacker.attack + " damage!");
 
         attacker.attack = attacker.attack + attacker.baseAttack;                // increases the attacker's attack power after every attack
+        var $newAttack = $($selectedChar).find("p:last");
+        $newAttack.html("Attack: " + attacker.attack);
 
         // console.log(attacker.hp);
         // console.log(defender.hp);
