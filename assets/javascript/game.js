@@ -29,7 +29,7 @@ Game Plan:
     a. New Attack Power = New Attack Power + Base Attack Power;
     b. e.g. with an attack of 6, attack goes up by 6 each turn.
 
-10. When user's hp = 0,                                                                         (in progress)
+10. When user's hp = 0,                                                                             (A)
     a. Game over screen displays.
     b. Prompt to start a new game.
 
@@ -43,34 +43,34 @@ Game Plan:
     a. Win screen displays.                                                                         
     b. Press button to play again.                                                              
 
-13. Need to balance game so that the player can get a game over                                 (in progress)
+13. Need to balance game so that the player can get a game over                                     (A)
 
 */
 
 var lukeSkywalker = {
     name: "Luke Skywalker",
     hp: 100,
-    baseAttack: 5,
-    attack: 5,
-    counterAttack: 5,
+    baseAttack: 10,
+    attack: 10,
+    // counterAttack: 5,
     picture: "assets/images/luke-skywalker.jpg"
 }
 
 var darthVader = {
     name: "Darth Vader",
     hp: 120,
-    baseAttack: 8,
-    attack: 8,
-    counterAttack: 8,
+    baseAttack: 25,
+    attack: 25,
+    // counterAttack: 8,
     picture: "assets/images/darth-vader.jpg"
 }
 
 var bobaFett = {
     name: "Boba Fett",
     hp: 110,
-    baseAttack: 7,
-    attack: 7,
-    counterAttack: 7,
+    baseAttack: 15,
+    attack: 15,
+    // counterAttack: 7,
     picture: "assets/images/boba-fett.jpg"
 }
 
@@ -79,7 +79,7 @@ var jarBinks = {
     hp: 300,
     baseAttack: 2,
     attack: 2,
-    counterAttack: 2,
+    // counterAttack: 2,
     picture: "assets/images/jarjar-binks.jpg"
 }
 
@@ -273,6 +273,10 @@ function fight() {
         if (defender.hp <= 0) {                                                 // if the defender runs out of hp, then...
             removeDead();                                                       // removes the defender from the battle area
         }
+
+        if (attacker.hp <= 0) {
+            gameOver();
+        }
     })
 }
 
@@ -356,6 +360,7 @@ function displayWin() {
 function gameOver() {
     $(".message").html("<h2>Game Over!</h2>");
     $(combatMsg1).html("Try again?");
+    $(combatMsg2).empty();
     $(fightButton).html("New Game");
 
     $(fightButton).on("click", function() {
