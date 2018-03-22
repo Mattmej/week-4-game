@@ -2,32 +2,43 @@
 
 Game Plan:
 
-1. Characters are displayed on the screen.                                                          ()
+1. Characters are displayed on the screen.                                                          (A)
     a. Display portrait                                                                             (o)
     b. Display hp                                                                                   (o)
-    c. Display attack power                                                                     (in progress)
-2. A prompt will appear on screen to choose a character.                                            (o)
-3. User will click on a character to play.                                                          (o)
-4. When clicked, the character will move to the battle area.                                        (o)
+    c. Display attack power                                                                         (o)
+
+2. A prompt will appear on screen to choose a character.                                            (A)
+
+3. User will click on a character to play.                                                          (A)
+
+4. When clicked, the character will move to the battle area.                                        (A)
     a. Move player character to another div
     b. Move enemy character to another div
-5. User will click on another character to fight.                                                   (o)
-6. [same as 4, but for the second character]                                                        (o)
-7. Button to attack enemy will either appear or already be in the battle area.                  (in progress)
-8. When user presses attack button, messages will appear.
-    a. You attacked [name] for [#] damage!
+
+5. User will click on another character to fight.                                                   (A)
+
+6. [same as 4, but for the second character]                                                        (A)
+
+7. Button to attack enemy will either appear or already be in the battle area.                      (A)
+
+8. When user presses attack button, messages will appear.                                       (in progress)
+    a. You attacked [name] for [#] damage!                                                          (o)
     b. [name] attacked you back for [#] damage!
-9. Every time the attack button is pressed, the user's attack power will increase.
+
+9. Every time the attack button is pressed, the user's attack power will increase.                  (A)
     a. New Attack Power = New Attack Power + Base Attack Power;
     b. e.g. with an attack of 6, attack goes up by 6 each turn.
+
 10. When user's hp = 0,
     a. Game over screen displays.
     b. Prompt to start a new game.
+
 11. When opponent's hp = 0,
     a. Character disappears from the screen
     b. Prompt appears saying what happened.
         i. You defeated ___
         ii. Select a new character to fight.
+        
 12. When all opponents are defeated,
     a. Win screen displays.
 
@@ -146,9 +157,9 @@ function selectCharacters() {
                         var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
                         $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
 
-                        displayForCombat();
-                        getCombatantInfo();
-                        fight();
+                        displayForCombat();                                                 // creates fight button and space for messages
+                        getCombatantInfo();                                                 // attaches the characters' object to the selected character portraits
+                        fight();                                                            // has what happens when user presses the "fight" button
 
 
                     }
@@ -170,21 +181,22 @@ function displayForCombat() {
     // 2. add a child element for commentary on what happens
     // 3. add a child element underneath that has the button to fight.
 
-    var combatWrapper = document.createElement("div");
-    $(combatWrapper).addClass("d-flex flex-column justify-content-around");
-    $(".charArea > figure:first-child").after(combatWrapper);
+    var combatWrapper = document.createElement("div");                                      // "combatWrapper" is a <div> element
+    $(combatWrapper).addClass("d-flex flex-column justify-content-around");                 // adds these classes to the "combatWrapper" element
+    $(".charArea > figure:first-child").after(combatWrapper);                               /* inserts the "combatWrapper" element after the 
+                                                                                                first <figure> element of the element with ".charArea" */
 
 
-        combatMsg = document.createElement("div");
+        combatMsg = document.createElement("div");                                          // "combatMsg" is a <div> element
         // $(combatMsg).html("This is a test!");
-        $(combatMsg).addClass("sw-text");
-        $(combatWrapper).append(combatMsg);
+        $(combatMsg).addClass("sw-text");                                                   // adds the ".sw-text" class to the "combatMsg" element
+        $(combatWrapper).append(combatMsg);                                                 // adds the "combatMsg" element  as a child to the "combatWrapper" element 
 
-        var fightButton = document.createElement("button");
-        $(fightButton).attr("type", "button");
-        $(fightButton).addClass("btn");
-        $(fightButton).html("Attack");
-        $(combatWrapper).append(fightButton);
+        var fightButton = document.createElement("button");                                 // "fightButton" is a <button> element
+        $(fightButton).attr("type", "button");                                              // adds the "type = 'button'" attribute to the "fightButton" element
+        $(fightButton).addClass("btn");                                                     // adds the class ".btn" to the "fightButton" element
+        $(fightButton).html("Attack");                                                      // the button now has the word "Attack" on it.
+        $(combatWrapper).append(fightButton);                                               // adds this button to the "combatWrapper" element as its child
 }
 
 function getCombatantInfo() {
@@ -205,42 +217,41 @@ function getCombatantInfo() {
 
     for (i = 0; i < charArray.length; i++) {    // cycle through array elements of charArray
         
-        $finder = $($selectedChar).find("p:first");
-
-        if ($finder.html() == charArray[i].name) {
-            attacker = charArray[i];
-            console.log(attacker);
+        // ===== Selecting the Player Character =====
+        $finder = $($selectedChar).find("p:first");                         // finds the first <p> element of the "$selectedChar" element
+        if ($finder.html() == charArray[i].name) {                          // if this first <p> element contains a name of a character, then...
+            attacker = charArray[i];                                        // the character will be designated the "attacker"
+            // console.log(attacker);
 
         }
 
-        $enemyFinder = $($selectedEnemy).find("p:first");
-
-        if ($enemyFinder.html() == charArray[i].name) {
-            defender = charArray[i];
-            console.log(defender);
+        // ===== Selecting the Enemy =====
+        $enemyFinder = $($selectedEnemy).find("p:first");                   // finds the first <p> element of the "$selectedEnemy" element
+        if ($enemyFinder.html() == charArray[i].name) {                     // if the first <p> element contains the name of a character, then...
+            defender = charArray[i];                                        // the character will be designated the "defender"
+            // console.log(defender);
 
         }
     }
 
         // $finder = $($selectedChar).find("p:first");
         // console.log($finder.html());
-
-
-
 }
 
 function fight() {
-    $(".btn").on("click", function() {
-        defender.hp = defender.hp - attacker.attack;
-        var $defenderHpDisplay = $($selectedEnemy).find("p:nth-of-type(2)");
-        $defenderHpDisplay.html(defender.hp);
+    $(".btn").on("click", function() {                                          // when you click the "fight" button, then...
+        defender.hp = defender.hp - attacker.attack;                            // defender's hp decreases by the attacker's attack power
+        var $defenderHpDisplay = $($selectedEnemy).find("p:nth-of-type(2)");    // gets the enemy's displayed hp
+        $defenderHpDisplay.html(defender.hp);                                   // displays the new value of the enemy's hp
+
+        // battle message that displays
         $(combatMsg).html(attacker.name + " attacked " + defender.name + " for " + attacker.attack + " damage!");
 
-        attacker.hp = attacker.hp - defender.attack;
-        var $playerHpDisplay = $($selectedChar).find("p:nth-of-type(2)");
-        $playerHpDisplay.html(attacker.hp);
+        attacker.hp = attacker.hp - defender.attack;                            // attacker's hp decreases by the defender's attack power.
+        var $playerHpDisplay = $($selectedChar).find("p:nth-of-type(2)");       // gets the player's displayed hp
+        $playerHpDisplay.html(attacker.hp);                                     // displays the new value of the attacker's hp
 
-        attacker.attack = attacker.attack + attacker.baseAttack;
+        attacker.attack = attacker.attack + attacker.baseAttack;                // increases the attacker's attack power after every attack
 
         // $("#char1-hp").html(lukeSkywalker.hp);
 
@@ -250,14 +261,6 @@ function fight() {
 
     })
 }
-
-
-
-
-
-
-
-
 
 
 
