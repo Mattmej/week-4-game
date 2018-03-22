@@ -29,19 +29,19 @@ Game Plan:
     a. New Attack Power = New Attack Power + Base Attack Power;
     b. e.g. with an attack of 6, attack goes up by 6 each turn.
 
-10. When user's hp = 0,
+10. When user's hp = 0,                                                                         (in progress)
     a. Game over screen displays.
     b. Prompt to start a new game.
 
 11. When opponent's hp = 0,                                                                         (A)
-    a. Character disappears from the screen                                                         (o)
-    b. Prompt appears saying what happened.                                                         (o)
+    a. Character disappears from the screen                                                         
+    b. Prompt appears saying what happened.                                                         
         i. You defeated ___
         ii. Select a new character to fight.
         
-12. When all opponents are defeated,                                                                
-    a. Win screen displays.                                                                         (o)
-    b. Press button to play again.                                                              (in progress)
+12. When all opponents are defeated,                                                                (A)
+    a. Win screen displays.                                                                         
+    b. Press button to play again.                                                              
 
 
 
@@ -347,6 +347,10 @@ function displayWin() {
     $(fightButton).html("New Game");
     $(combatMsg1).html("May the Force be with you.");
     $(combatMsg2).html("Click button to start a new game.");
+
+    $(fightButton).on("click", function() {
+        location.reload();
+    })
 }
 
 
