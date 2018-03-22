@@ -161,7 +161,10 @@ function selectCharacters() {
                         displayForCombat();                                                 // creates fight button and space for messages
                         getCombatantInfo();                                                 // attaches the characters' object to the selected character portraits
                         fight();                                                            // has what happens when user presses the "fight" button
-
+                        
+                        // if (defender.hp <= 0) {
+                        //     checkIfDead();
+                        // }
 
                     }
                                         
@@ -267,10 +270,26 @@ function fight() {
         // $("#char1-hp").html(lukeSkywalker.hp);
 
         // console.log(attacker.hp);
-        // console.log(defender.hp);
+        console.log(defender.hp);
+
+        if (defender.hp <= 0) {
+            checkIfDead();
+        }
 
 
     })
+}
+
+function checkIfDead() {
+    // if (defender.hp <= 0) {
+        $selectedEnemy.remove();
+        $(combatMsg1).html(defender.name + " has fallen!");
+        $(combatMsg2).html("Choose another opponent!");
+        // charArray.splice(0, charArray.indexOf(defender));
+        charArray.splice(charArray.indexOf(defender), 1);
+        console.log(charArray);
+        selectCharacters();
+    // }
 }
 
 
