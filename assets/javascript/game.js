@@ -53,6 +53,7 @@ var lukeSkywalker = {
     baseAttack: 10,
     attack: 10,
     // counterAttack: 5,
+    // attackSound: 
     picture: "assets/images/luke-skywalker.jpg"
 }
 
@@ -104,6 +105,9 @@ var $activateVs;
 var bgMusic = document.createElement("audio");
 $(bgMusic).attr("src", "assets/duel-of-the-fates.mp3");
 bgMusic.loop = true;
+
+var lightsaberSound = document.createElement("audio");
+// $(lightsaberSound).attr("src", "")
 
 
 
