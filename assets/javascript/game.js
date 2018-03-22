@@ -136,39 +136,12 @@ function selectCharacters() {
 
             if (playerIsClicked && !enemyIsClicked) {                                       // if a player is selected but no enemy is selected, then...
                 
-                $(".enemyHolder").on("click", function() {
-
-                    $(this).toggleClass("enemy-select");                                    // turns the selected enemy red
-                    $(".enemy-select").attr("id", "enemyChar");                             // adds the "enemyChar" id to whoever is selected
-                    $selectedEnemy = $("#enemyChar");                                       // $selectedEnemy => holds the element with the "enemyChar" id
-                    $(".message").html("<h2>Get ready to fight!</h2>");                     // displays this message
-                    $(".charHolder").off("click");                                          // turns off click function for all elements with the "charHolder" class
-                    enemyIsClicked = true;                                                  // says that the enemy has been clicked.
+                chooseEnemy();
 
                                                                                             ////////////////////////////////////////////////////////////////                    
 
-                    if (playerIsClicked && enemyIsClicked) {                                // if both characters have been selected, then...
-                        var $green = $selectedChar.detach();                                // detaches the selected character from his area on the page
-                        $green.appendTo("#playerArea");                                     // adds the character to the player area
-
-                        var $activateVs = $("#vs").html("<img></img>").find("img");         // $activateVs => holds the <img> child element of the element with #vs
-                        $activateVs.attr("src", "assets/images/versus.png");                // attaches the image to the <img> element
-                        $activateVs.attr("id","vs-sizer");                                  // adds the #vs-sizer id to the <img> element
-
-                        var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
-                        $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
-
-                        displayForCombat();                                                 // creates fight button and space for messages
-                        getCombatantInfo();                                                 // attaches the characters' object to the selected character portraits
-                        fight();                                                            // has what happens when user presses the "fight" button
-                        
-                        // if (defender.hp <= 0) {
-                        //     checkIfDead();
-                        // }
-
-                    }
-                                        
-                })
+        
+              
             }
 
         }
@@ -288,13 +261,46 @@ function checkIfDead() {
         // charArray.splice(0, charArray.indexOf(defender));
         charArray.splice(charArray.indexOf(defender), 1);
         console.log(charArray);
-        selectCharacters();
+        // selectCharacters();
     // }
+}
+
+function chooseEnemy() {
+    $(".enemyHolder").on("click", function() {
+
+        $(this).toggleClass("enemy-select");                                    // turns the selected enemy red
+        $(".enemy-select").attr("id", "enemyChar");                             // adds the "enemyChar" id to whoever is selected
+        $selectedEnemy = $("#enemyChar");                                       // $selectedEnemy => holds the element with the "enemyChar" id
+        $(".message").html("<h2>Get ready to fight!</h2>");                     // displays this message
+        $(".charHolder").off("click");                                          // turns off click function for all elements with the "charHolder" class
+        enemyIsClicked = true;                                                  // says that the enemy has been clicked.
+        console.log(enemyIsClicked);
+
+        if (playerIsClicked && enemyIsClicked) {                                // if both characters have been selected, then...
+            var $green = $selectedChar.detach();                                // detaches the selected character from his area on the page
+            $green.appendTo("#playerArea");                                     // adds the character to the player area
+
+            var $activateVs = $("#vs").html("<img></img>").find("img");         // $activateVs => holds the <img> child element of the element with #vs
+            $activateVs.attr("src", "assets/images/versus.png");                // attaches the image to the <img> element
+            $activateVs.attr("id","vs-sizer");                                  // adds the #vs-sizer id to the <img> element
+
+            var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
+            $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
+
+            displayForCombat();                                                 // creates fight button and space for messages
+            getCombatantInfo();                                                 // attaches the characters' object to the selected character portraits
+            fight();                                                            // has what happens when user presses the "fight" button
+            
+            // if (defender.hp <= 0) {
+            //     checkIfDead();
+            // }
+
+        }
+                    
+    })
 }
 
 
 
 
 selectCharacters();
-
-
