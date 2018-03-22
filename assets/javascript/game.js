@@ -39,8 +39,9 @@ Game Plan:
         i. You defeated ___
         ii. Select a new character to fight.
         
-12. When all opponents are defeated,
-    a. Win screen displays.
+12. When all opponents are defeated,                                                                
+    a. Win screen displays.                                                                         (o)
+    b. Press button to play again.                                                              (in progress)
 
 
 
@@ -123,18 +124,18 @@ $("#char4-hp").html(jarBinks.hp);
 
 
 function selectCharacters() {
-    $(".charHolder").on("click", function() {                                               // everything inside this executes when this element is clicked
+    $(".charHolder").on("click", function() {                                   // everything inside this executes when this element is clicked
 
-        if (!playerIsClicked) {                                                             // if the player character has not been selected, then...
+        if (!playerIsClicked) {                                                 // if the player character has not been selected, then...
 
-            $(this).toggleClass("player-select");                                           // turns the selected enemy green   
-            $(".player-select").attr("id", "myChar");                                       // adds the "myChar" id to whoever is selected
+            $(this).toggleClass("player-select");                               // turns the selected enemy green   
+            $(".player-select").attr("id", "myChar");                           // adds the "myChar" id to whoever is selected
             $selectedChar = $("#myChar");
-            $(".message").html("<h2>Choose your opponent!</h2>");                           // displays this message
-            $(this).removeClass("enemyHolder");                                             // prevents a user from selecting themselves as an enemy
-            playerIsClicked = true;                                                         // says that the player has been clicked.
+            $(".message").html("<h2>Choose your opponent!</h2>");               // displays this message
+            $(this).removeClass("enemyHolder");                                 // prevents a user from selecting themselves as an enemy
+            playerIsClicked = true;                                             // says that the player has been clicked.
 
-            if (playerIsClicked && !enemyIsClicked) {                                       // if a player is selected but no enemy is selected, then...
+            if (playerIsClicked && !enemyIsClicked) {                           // if a player is selected but no enemy is selected, then...
                 chooseEnemy();
             }
         }
@@ -160,7 +161,7 @@ function chooseEnemy() {
             var $green = $selectedChar.detach();                                // detaches the selected character from his area on the page
             $green.appendTo("#playerArea");                                     // adds the character to the player area
 
-            $activateVs = $("#vs").html("<img></img>").find("img");         // $activateVs => holds the <img> child element of the element with #vs
+            $activateVs = $("#vs").html("<img></img>").find("img");             // $activateVs => holds the <img> child element of the element with #vs
             $activateVs.attr("src", "assets/images/versus.png");                // attaches the image to the <img> element
             $activateVs.attr("id","vs-sizer");                                  // adds the #vs-sizer id to the <img> element
 
@@ -191,27 +192,29 @@ function displayForCombat() {
     // $emptyItem.remove();
     $(combatWrapper).remove(); 
     combatWrapper = document.createElement("div");                                      // "combatWrapper" is a <div> element
-    $(combatWrapper).addClass("d-flex flex-column justify-content-around");                 // adds these classes to the "combatWrapper" element
+    $(combatWrapper).addClass("d-flex flex-column justify-content-around");             // adds these classes to the "combatWrapper" element
     $(fightButton).remove();
-    $(".charArea > figure:first-child").after(combatWrapper);                               /* inserts the "combatWrapper" element after the 
-                                                                                                first <figure> element of the element with ".charArea" */
+    $(".charArea > figure:first-child").after(combatWrapper);                           /* inserts the "combatWrapper" element after the 
+                                                                                            first <figure> element of the element with ".charArea" */
 
 
-        combatMsg1 = document.createElement("div");                                          // "combatMsg1" is a <div> element
+        // ===== Children of combatWrapper =====
+
+        combatMsg1 = document.createElement("div");                                     // "combatMsg1" is a <div> element
         // $(combatMsg1).html("This is a test!");
-        $(combatMsg1).addClass("sw-text");                                                   // adds the ".sw-text" class to the "combatMsg1" element
-        $(combatWrapper).append(combatMsg1);                                                 // adds the "combatMsg1" element  as a child to the "combatWrapper" element 
+        $(combatMsg1).addClass("sw-text");                                              // adds the ".sw-text" class to the "combatMsg1" element
+        $(combatWrapper).append(combatMsg1);                                            // adds the "combatMsg1" element  as a child to the "combatWrapper" element 
 
-        combatMsg2 = document.createElement("div");                                          // "combatMsg2" is a <div> element
+        combatMsg2 = document.createElement("div");                                     // "combatMsg2" is a <div> element
         // $(combatMsg2).html("This is a test!");
         $(combatMsg2).addClass("sw-text");                                                  
         $(combatWrapper).append(combatMsg2);   
 
         fightButton = document.createElement("button");                                 // "fightButton" is a <button> element
-        $(fightButton).attr("type", "button");                                              // adds the "type = 'button'" attribute to the "fightButton" element
-        $(fightButton).addClass("btn");                                                     // adds the class ".btn" to the "fightButton" element
-        $(fightButton).html("Attack");                                                      // the button now has the word "Attack" on it.
-        $(combatWrapper).append(fightButton);                                               // adds this button to the "combatWrapper" element as its child
+        $(fightButton).attr("type", "button");                                          // adds the "type = 'button'" attribute to the "fightButton" element
+        $(fightButton).addClass("btn");                                                 // adds the class ".btn" to the "fightButton" element
+        $(fightButton).html("Attack");                                                  // the button now has the word "Attack" on it.
+        $(combatWrapper).append(fightButton);                                           // adds this button to the "combatWrapper" element as its child
 }
 
 function getCombatantInfo() {
@@ -252,58 +255,58 @@ function fight() {
         var $defenderHpDisplay = $($selectedEnemy).find("p:nth-of-type(2)");    // gets the enemy's displayed hp
         $defenderHpDisplay.html(defender.hp);                                   // displays the new value of the enemy's hp
 
+        // message: "[Defender] attacked [attacker] for [#] damage!"
         $(combatMsg2).html(defender.name + " attacked " + attacker.name + " for " + defender.attack + " damage!");
 
         attacker.hp = attacker.hp - defender.attack;                            // attacker's hp decreases by the defender's attack power.
         var $playerHpDisplay = $($selectedChar).find("p:nth-of-type(2)");       // gets the player's displayed hp
         $playerHpDisplay.html(attacker.hp);                                     // displays the new value of the attacker's hp
 
-        // battle message that displays
+        // message: "[Attacker] attacked [defender] for [#] damage!"
         $(combatMsg1).html(attacker.name + " attacked " + defender.name + " for " + attacker.attack + " damage!");
 
         attacker.attack = attacker.attack + attacker.baseAttack;                // increases the attacker's attack power after every attack
 
         // console.log(attacker.hp);
-        console.log(defender.hp);
+        // console.log(defender.hp);
 
-        if (defender.hp <= 0) {
-            removeDead();
+        if (defender.hp <= 0) {                                                 // if the defender runs out of hp, then...
+            removeDead();                                                       // removes the defender from the battle area
         }
     })
 }
 
-function removeDead() {
+function removeDead() {                                                 
     
-    $selectedEnemy.remove();
-    // $activateVs.remove();
-    $(combatMsg1).html(defender.name + " has fallen!");
-    $(combatMsg2).html("Choose another opponent!");
+    $selectedEnemy.remove();                                                // removes the enemy from the battle area
+    $(combatMsg1).html(defender.name + " has fallen!");                     // displays "[Defender] has fallen!"
+    $(combatMsg2).html("Choose another opponent!");                         // asks to choose another opponent
     // charArray.splice(0, charArray.indexOf(defender));
-    charArray.splice(charArray.indexOf(defender), 1);
-    console.log(charArray);
-    $(".btn").off("click");
+    charArray.splice(charArray.indexOf(defender), 1);                       // removes one element (the defender's object) from the charArray
+    // console.log(charArray);
+    $(".btn").off("click");                                                 // stops the button from being pressed more times
 
-        $activateVs.remove();
+    $activateVs.remove();                                                   // removes the "vs" image
     // $activateVs.detach();
 
-    enemyIsClicked = false;
+    enemyIsClicked = false;                                                 
 
-    if (charArray.length > 2) {
+    if (charArray.length > 2) {                                             // if there are more than 2 characters in the charArray
         chooseEnemy();
     }
     // selectCharacters();
 
-    if (charArray.length === 2) {
+    if (charArray.length === 2) {                                           // if there are only 2 characters left (player and opponent)
         chooseLastEnemy();
     }
 
-    if (charArray.length === 1) {
+    if (charArray.length === 1) {                                           // if the player is the only one left standing
         displayWin();
     }
    
 }
 
-function chooseLastEnemy() {
+function chooseLastEnemy() {                                                    // special case for picking last opponent
 
     $(".enemyHolder").on("click", function() {
 
@@ -317,12 +320,15 @@ function chooseLastEnemy() {
 
         if (playerIsClicked && enemyIsClicked) {                                // if both characters have been selected, then...
 
-            var emptyItem = document.createElement("figure");
-            var emptyItem2 = document.createElement("figure");
-            $(emptyItem).addClass("empty-block");
+            var emptyItem = document.createElement("figure");                   /* creates an empty figure. Necessary for the charArea element not to be deleted
+                                                                                     after running out of elements */
+
+            var emptyItem2 = document.createElement("figure");                  // see last comment
+            $(emptyItem).addClass("empty-block");                               // gives the figure height and width
             $(emptyItem2).addClass("empty-block");
-            $selectedEnemy.after(emptyItem2);
-            $selectedEnemy.before(emptyItem);
+            $selectedEnemy.after(emptyItem2);                                   // inserts an empty figure after the $selectedEnemy element
+            $selectedEnemy.before(emptyItem);                                   // inserts an empty figure after the $selectedEnemy element
+
             var $red = $selectedEnemy.detach();                                 // detaches the selected enemy from his area on the page
             $red.appendTo("#enemyArea");                                        // adds the enemy to the enemy area
 
