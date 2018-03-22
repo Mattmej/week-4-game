@@ -98,6 +98,8 @@ var combatMsg2;
 var fightButton;
 var combatWrapper;
 
+var $activateVs;
+
 
 // Asks the user to choose a character
 $(".message").html("<h2>Choose your character!</h2>");
@@ -158,7 +160,7 @@ function chooseEnemy() {
             var $green = $selectedChar.detach();                                // detaches the selected character from his area on the page
             $green.appendTo("#playerArea");                                     // adds the character to the player area
 
-            var $activateVs = $("#vs").html("<img></img>").find("img");         // $activateVs => holds the <img> child element of the element with #vs
+            $activateVs = $("#vs").html("<img></img>").find("img");         // $activateVs => holds the <img> child element of the element with #vs
             $activateVs.attr("src", "assets/images/versus.png");                // attaches the image to the <img> element
             $activateVs.attr("id","vs-sizer");                                  // adds the #vs-sizer id to the <img> element
 
@@ -265,20 +267,26 @@ function fight() {
         console.log(defender.hp);
 
         if (defender.hp <= 0) {
-            checkIfDead();
+            removeDead();
         }
     })
 }
 
-function checkIfDead() {
+function removeDead() {
     
     $selectedEnemy.remove();
+    // $activateVs.remove();
     $(combatMsg1).html(defender.name + " has fallen!");
     $(combatMsg2).html("Choose another opponent!");
     // charArray.splice(0, charArray.indexOf(defender));
     charArray.splice(charArray.indexOf(defender), 1);
     console.log(charArray);
     $(".btn").off("click");
+
+        $activateVs.remove();
+    // $activateVs.detach();
+
+    enemyIsClicked = false;
 
     if (charArray.length > 2) {
         chooseEnemy();
@@ -327,6 +335,20 @@ function chooseLastEnemy() {
         }         
     })
 }
+
+function displayWin() {
+    $(".message").html("<h2>You Win!</h2>");
+    $(fightButton).html("New Game");
+    $(combatMsg1).html("May the Force be with you.");
+    $(combatMsg2).html("Click button to start a new game.");
+}
+
+
+
+
+
+
+
 
 
 
