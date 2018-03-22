@@ -33,7 +33,7 @@ Game Plan:
     a. Game over screen displays.
     b. Prompt to start a new game.
 
-11. When opponent's hp = 0,
+11. When opponent's hp = 0,                                                                         (A)
     a. Character disappears from the screen                                                         (o)
     b. Prompt appears saying what happened.                                                         (o)
         i. You defeated ___
@@ -123,8 +123,6 @@ $("#char4-hp").html(jarBinks.hp);
 function selectCharacters() {
     $(".charHolder").on("click", function() {                                               // everything inside this executes when this element is clicked
 
-                                                                                            ////////////////////////////////////////////////////////////////
-
         if (!playerIsClicked) {                                                             // if the player character has not been selected, then...
 
             $(this).toggleClass("player-select");                                           // turns the selected enemy green   
@@ -134,22 +132,11 @@ function selectCharacters() {
             $(this).removeClass("enemyHolder");                                             // prevents a user from selecting themselves as an enemy
             playerIsClicked = true;                                                         // says that the player has been clicked.
 
-                                                                                            ////////////////////////////////////////////////////////////////                                                                                            
-
             if (playerIsClicked && !enemyIsClicked) {                                       // if a player is selected but no enemy is selected, then...
-                
                 chooseEnemy();
-
-                                                                                            ////////////////////////////////////////////////////////////////                    
-
-        
-              
             }
-
         }
-
     })
-
 }
 
 
@@ -226,7 +213,6 @@ function displayForCombat() {
 }
 
 function getCombatantInfo() {
-
     /* 
     1. Gets the element of the player character
         a. Checks to see if the element has a property pertaining to one of the character objects
@@ -236,10 +222,7 @@ function getCombatantInfo() {
             then let the webpage know that the image that you selected belongs to that character
     
     2. Do the same for the enemy character.
-
     */
-
-
 
     for (i = 0; i < charArray.length; i++) {    // cycle through array elements of charArray
         
@@ -248,7 +231,6 @@ function getCombatantInfo() {
         if ($finder.html() == charArray[i].name) {                          // if this first <p> element contains a name of a character, then...
             attacker = charArray[i];                                        // the character will be designated the "attacker"
             // console.log(attacker);
-
         }
 
         // ===== Selecting the Enemy =====
@@ -256,12 +238,8 @@ function getCombatantInfo() {
         if ($enemyFinder.html() == charArray[i].name) {                     // if the first <p> element contains the name of a character, then...
             defender = charArray[i];                                        // the character will be designated the "defender"
             // console.log(defender);
-
         }
     }
-
-    // $finder = $($selectedChar).find("p:first");
-    // console.log($finder.html());
 }
 
 
@@ -274,8 +252,6 @@ function fight() {
 
         $(combatMsg2).html(defender.name + " attacked " + attacker.name + " for " + defender.attack + " damage!");
 
-       
-
         attacker.hp = attacker.hp - defender.attack;                            // attacker's hp decreases by the defender's attack power.
         var $playerHpDisplay = $($selectedChar).find("p:nth-of-type(2)");       // gets the player's displayed hp
         $playerHpDisplay.html(attacker.hp);                                     // displays the new value of the attacker's hp
@@ -283,10 +259,7 @@ function fight() {
         // battle message that displays
         $(combatMsg1).html(attacker.name + " attacked " + defender.name + " for " + attacker.attack + " damage!");
 
-
         attacker.attack = attacker.attack + attacker.baseAttack;                // increases the attacker's attack power after every attack
-
-        // $("#char1-hp").html(lukeSkywalker.hp);
 
         // console.log(attacker.hp);
         console.log(defender.hp);
@@ -294,8 +267,6 @@ function fight() {
         if (defender.hp <= 0) {
             checkIfDead();
         }
-
-
     })
 }
 
@@ -316,6 +287,10 @@ function checkIfDead() {
 
     if (charArray.length === 2) {
         chooseLastEnemy();
+    }
+
+    if (charArray.length === 1) {
+        displayWin();
     }
    
 }
@@ -349,13 +324,8 @@ function chooseLastEnemy() {
 
             getCombatantInfo();                                                 // attaches the characters' object to the selected character portraits
             fight();                                                            // has what happens when user presses the "fight" button
-
-        }
-                    
+        }         
     })
-
-
-
 }
 
 
