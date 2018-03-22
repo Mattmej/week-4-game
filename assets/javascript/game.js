@@ -2,10 +2,10 @@
 
 Game Plan:
 
-1. Characters are displayed on the screen.                                                          (A)
-    a. Display portrait                                                                             
-    b. Display hp                                                                                   
-    c. Display attack power                                                                         
+1. Characters are displayed on the screen.                                                          ()
+    a. Display portrait                                                                             (o)
+    b. Display hp                                                                                   (o)
+    c. Display attack power                                                                     (in progress)                                                                     
 
 2. A prompt will appear on screen to choose a character.                                            (A)
 
