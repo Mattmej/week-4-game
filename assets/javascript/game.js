@@ -101,6 +101,11 @@ var combatWrapper;
 
 var $activateVs;
 
+var bgMusic = document.createElement("audio");
+$(bgMusic).attr("src", "assets/duel-of-the-fates.mp3");
+bgMusic.loop = true;
+
+
 
 // Asks the user to choose a character
 $(".message").html("<h2>Choose your character!</h2>");
@@ -187,7 +192,9 @@ function chooseEnemy() {
     })
 }
 
-
+function startMusic() {
+    bgMusic.play();
+}
 
 function displayForCombat() {
     // 1. add an element in the space between the unpicked characters (firstChild).after()
@@ -208,12 +215,12 @@ function displayForCombat() {
 
         combatMsg1 = document.createElement("div");                                     // "combatMsg1" is a <div> element
         // $(combatMsg1).html("This is a test!");
-        $(combatMsg1).addClass("sw-text");                                              // adds the ".sw-text" class to the "combatMsg1" element
+        $(combatMsg1).addClass("sw-text white-bg px-2");                                              // adds the ".sw-text" class to the "combatMsg1" element
         $(combatWrapper).append(combatMsg1);                                            // adds the "combatMsg1" element  as a child to the "combatWrapper" element 
 
         combatMsg2 = document.createElement("div");                                     // "combatMsg2" is a <div> element
         // $(combatMsg2).html("This is a test!");
-        $(combatMsg2).addClass("sw-text");                                                  
+        $(combatMsg2).addClass("sw-text white-bg px-2");                                                  
         $(combatWrapper).append(combatMsg2);   
 
         fightButton = document.createElement("button");                                 // "fightButton" is a <button> element
@@ -383,7 +390,6 @@ function gameOver() {
 
 
 
-
-
+startMusic();
 
 selectCharacters();
