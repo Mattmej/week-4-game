@@ -12,6 +12,12 @@ Star Wars RPG
 
 This program is an example of jQuery code and JavaScript functions being used to create an RPG game.
 
+### Details
+
+The game begins with the user selecting a character that they wish to play as, and then selecting their first opponent to fight. 
+
+![select_character]()
+
 
 #### Characters
 
