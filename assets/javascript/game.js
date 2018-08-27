@@ -52,8 +52,6 @@ var lukeSkywalker = {
     hp: 100,
     baseAttack: 10,
     attack: 10,
-    // counterAttack: 5,
-    // attackSound: 
     picture: "assets/images/luke-skywalker.jpg"
 }
 
@@ -62,7 +60,6 @@ var darthVader = {
     hp: 120,
     baseAttack: 25,
     attack: 25,
-    // counterAttack: 8,
     picture: "assets/images/darth-vader.jpg"
 }
 
@@ -71,7 +68,6 @@ var bobaFett = {
     hp: 110,
     baseAttack: 15,
     attack: 15,
-    // counterAttack: 7,
     picture: "assets/images/boba-fett.jpg"
 }
 
@@ -80,7 +76,6 @@ var jarBinks = {
     hp: 300,
     baseAttack: 2,
     attack: 2,
-    // counterAttack: 2,
     picture: "assets/images/jarjar-binks.jpg"
 }
 
@@ -107,13 +102,11 @@ $(bgMusic).attr("src", "assets/duel-of-the-fates.mp3");
 bgMusic.loop = true;
 
 var lightsaberSound = document.createElement("audio");
-// $(lightsaberSound).attr("src", "")
 
 
 
 // Asks the user to choose a character
 $(".message").html("<h2>Choose your character!</h2>");
-
 
 
 // Adds the characters' picture to the div
@@ -171,8 +164,6 @@ function chooseEnemy() {
 
         if (playerIsClicked && enemyIsClicked) {                                // if both characters have been selected, then...
 
-            // var $emptyItem = $(".charArea").append("<div>text</div>");
-            // $emptyItem.detach();
             var $green = $selectedChar.detach();                                // detaches the selected character from his area on the page
             $green.appendTo("#playerArea");                                     // adds the character to the player area
 
@@ -186,13 +177,7 @@ function chooseEnemy() {
             displayForCombat();                                                 // creates fight button and space for messages
             getCombatantInfo();                                                 // attaches the characters' object to the selected character portraits
             fight();                                                            // has what happens when user presses the "fight" button
-            
-            // if (defender.hp <= 0) {
-            //     checkIfDead();
-            // }
-
-        }
-                    
+        }           
     })
 }
 
@@ -204,9 +189,7 @@ function displayForCombat() {
     // 1. add an element in the space between the unpicked characters (firstChild).after()
     // 2. add a child element for commentary on what happens
     // 3. add a child element underneath that has the button to fight.
-    // var fightButton;
-    // var $emptyItem = $(".charArea").append("<div></div>");
-    // $emptyItem.remove();
+
     $(combatWrapper).remove(); 
     combatWrapper = document.createElement("div");                                      // "combatWrapper" is a <div> element
     $(combatWrapper).addClass("d-flex flex-column justify-content-around");             // adds these classes to the "combatWrapper" element
@@ -218,12 +201,10 @@ function displayForCombat() {
         // ===== Children of combatWrapper =====
 
         combatMsg1 = document.createElement("div");                                     // "combatMsg1" is a <div> element
-        // $(combatMsg1).html("This is a test!");
         $(combatMsg1).addClass("sw-text white-bg px-2");                                              // adds the ".sw-text" class to the "combatMsg1" element
         $(combatWrapper).append(combatMsg1);                                            // adds the "combatMsg1" element  as a child to the "combatWrapper" element 
 
         combatMsg2 = document.createElement("div");                                     // "combatMsg2" is a <div> element
-        // $(combatMsg2).html("This is a test!");
         $(combatMsg2).addClass("sw-text white-bg px-2");                                                  
         $(combatWrapper).append(combatMsg2);   
 
@@ -252,14 +233,12 @@ function getCombatantInfo() {
         $finder = $($selectedChar).find("p:first");                         // finds the first <p> element of the "$selectedChar" element
         if ($finder.html() == charArray[i].name) {                          // if this first <p> element contains a name of a character, then...
             attacker = charArray[i];                                        // the character will be designated the "attacker"
-            // console.log(attacker);
         }
 
         // ===== Selecting the Enemy =====
         $enemyFinder = $($selectedEnemy).find("p:first");                   // finds the first <p> element of the "$selectedEnemy" element
         if ($enemyFinder.html() == charArray[i].name) {                     // if the first <p> element contains the name of a character, then...
             defender = charArray[i];                                        // the character will be designated the "defender"
-            // console.log(defender);
         }
     }
 }
@@ -304,20 +283,16 @@ function removeDead() {
     $selectedEnemy.remove();                                                // removes the enemy from the battle area
     $(combatMsg1).html(defender.name + " has fallen!");                     // displays "[Defender] has fallen!"
     $(combatMsg2).html("Choose another opponent!");                         // asks to choose another opponent
-    // charArray.splice(0, charArray.indexOf(defender));
     charArray.splice(charArray.indexOf(defender), 1);                       // removes one element (the defender's object) from the charArray
-    // console.log(charArray);
     $(".btn").off("click");                                                 // stops the button from being pressed more times
 
     $activateVs.remove();                                                   // removes the "vs" image
-    // $activateVs.detach();
 
     enemyIsClicked = false;                                                 
 
     if (charArray.length > 2) {                                             // if there are more than 2 characters in the charArray
         chooseEnemy();
     }
-    // selectCharacters();
 
     if (charArray.length === 2) {                                           // if there are only 2 characters left (player and opponent)
         chooseLastEnemy();
@@ -357,8 +332,6 @@ function chooseLastEnemy() {                                                    
 
             displayForCombat();                                                 // creates fight button and space for messages
 
-            // $emptyItem.remove();
-
             getCombatantInfo();                                                 // attaches the characters' object to the selected character portraits
             fight();                                                            // has what happens when user presses the "fight" button
         }         
@@ -386,12 +359,6 @@ function gameOver() {
         location.reload();
     })
 }
-
-
-
-
-
-
 
 
 startMusic();
