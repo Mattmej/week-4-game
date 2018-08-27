@@ -20,11 +20,18 @@ The game begins with the user selecting a character that they wish to play as, a
 
 ![select_character](https://github.com/Mattmej/week-4-game/blob/master/assets/gifs/select_character.gif)
 
+<br />
+<br />
+
 
 
 After selecting their character and their opponent, the user will fight the opponent by pressing the "fight" button. Every time the user presses the "fight" button, their character's attack power goes up by the character's base attack power. 
 
 ![attack_example](https://github.com/Mattmej/week-4-game/blob/master/assets/gifs/attack_example.gif)
+
+<br />
+<br />
+
 
 
 
@@ -32,11 +39,19 @@ Once the user character's attack points exceeds the opponent's health ("HP") dur
 
 ![select_new_opponent](https://github.com/Mattmej/week-4-game/blob/master/assets/gifs/select_new_opp.gif)
 
+<br />
+<br />
+
+
 
 
 Once the last opponent is defeated, the user wins. 
 
 ![winning](https://github.com/Mattmej/week-4-game/blob/master/assets/gifs/winning.gif)
+
+<br />
+<br />
+
 
 
 
