@@ -20,6 +20,8 @@ The game begins with the user selecting a character that they wish to play as, a
 
 ![select_character](https://github.com/Mattmej/week-4-game/blob/master/assets/gifs/select_character.gif)
 
+<br />
+
 
 
 After selecting their character and their opponent, the user will fight the opponent by pressing the "fight" button. Every time the user presses the "fight" button, their character's attack power goes up by the character's base attack power. 
